@@ -55,7 +55,7 @@
 	facilities[1] = new Array(0, 30, 'trailer', 0.01, 0.05); //Trailer
 	facilities[2] = new Array(0, 5000, 'appartment', 1.5, 8); //Appartment
 	facilities[3] = new Array(0, 3000, 'export1', 1.8, 10); //Export1
-	facilities[4] = new Array(0, 500, 'enchantcursor1'); //Echantcursor1
+	facilities[4] = new Array(0, 2500, 'enchantcursor1'); //Echantcursor1
 	facilities[5] = new Array(0, 40, 'fakefarm', 0.03, 0.05); //Fakefarm
 	facilities[6] = new Array(0, 3500, 'fakefarm2', 4, 8.5); //Fakefarm2
 	facilities[7] = new Array(0, 100000, 'export2', 60, 340); //export2
@@ -225,13 +225,15 @@
 	        return;
 	    };
 	    if (facility === 'enchantcursor1') {
-	        if (weed > (increasePrice(4, (facilities[4][0] + 1)) - 1)) { //check weed
+	        if (weed > (increasePrice(4, (facilities[4][0] + 1)) - 1) && money > (increasePrice(4, (facilities[4][0] + 1)) - 1) && fertilizer > (increasePrice(4, (facilities[4][0] + 1)) - 1)) { //check weed, fertilizer and money
 	            facilities[4][0]++; //add one
 	            weed = weed - increasePrice(4, facilities[4][0]); //distract weed
+	            fertilizer = fertilizer - increasePrice(4, facilities[4][0]); //distract weed
+	            money = money - increasePrice(4, facilities[4][0]); //distract weed
 
 	            cursorPower = cursorPower + 1.5; // enhance Power
 
-	            var printString = facilities[4][0] + " Cursor Enchantments - buy for " + addCommas(Math.round(increasePrice(4, (facilities[4][0] + 1)))) + "g";
+	            var printString = facilities[4][0] + " Cursor Enchantments - buy for " + addCommas(Math.round(increasePrice(4, (facilities[4][0] + 1)))) + "g, $ and u";
 	            $('.enchantcursor1').text(printString);
 	            updatePerSecond();
 	            return;
@@ -734,7 +736,7 @@
 		$('.export2').tooltipster({ content: $('<span>Taking weed economy to a new level, this relationship will make you rich, and maybe endanger your life. <span>+ 3400$/s</span> | <span>- 600g/s</span></span>') });
 		$('.fakefarm').tooltipster({ content: $('<span>A local farmer that will now buy fertilizer under his name and give it to you, while of course taking your money. <span>+ 0.5u/s</span> | <span>- 0.3$/s</span></span>') });
 		$('.fakefarm2').tooltipster({ content: $('<span>By blackmailing some officials, you manage to take over a whole facility full of potential fertilizer. Once mixed with money. <span>+ 84g/s</span> | <span>- 40$/s</span></span>') });
-		$('.enchantcursor1').tooltipster({ content: $('<span>By smearing some stash on your gaming mouse, you managed to unlock a secret rapid fire button.</span>') });
+		$('.enchantcursor1').tooltipster({ content: $('<span>By smearing the rare mixture of Dollar bills, Weed and Fertilizer on your gaming mouse, you managed to unlock a secret rapid fire button.</span>') });
 	});
 	</script>
 </head>
@@ -831,7 +833,7 @@
 		<div id="list">
 			<span class="intro fakefarm" onclick="buyStuff('fakefarm')">0 Undercover Farms - buy for 40$</span>
 			<span class="intro fakefarm2" onclick="buyStuff('fakefarm2')">0 Nuclear Waste Facility - buy for 3,500$</span>
-			<span class="intro enchantcursor1" onclick="buyStuff('enchantcursor1')">0 Cursor Enchantments - buy for 500g</span>
+			<span class="intro enchantcursor1" onclick="buyStuff('enchantcursor1')">0 Cursor Enchantments - buy for 2500g, $ and u</span>
 		</div>
 	</div>
 
