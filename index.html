@@ -28,6 +28,7 @@
 	 //Quality Settings
 	var particlesDeactivated = false;
 	var menuflipDeactivated = false;
+	var softAnimations = false;
 
 	 //Resources and Resourceflow
 	var money = 0; //Resource
@@ -325,28 +326,47 @@
 	    $('#weed, #weedspan').removeClass();
 
 	    if ((wps - wes) > 0 && (wps - wes) <= 1) {
-	        $('#weed').removeClass('pulsefast pulsemed').addClass('pulseslow');
+	        $('#weed').delay(250).queue(function(next){
+			    $(this).addClass('pulseslow');
+			    next();
+			});
 	    };
 	    if ((wps - wes) >= 1 && (wps - wes) <= 4) {
-	        $('#weed').removeClass('pulsefast pulseslow').addClass('pulsemed');
+	        $('#weed').delay(250).queue(function(next){
+			    $(this).addClass('pulsemed');
+			    next();
+			});
 	    };
 	    if ((wps - wes) >= 4) {
-	        $('#weed').removeClass('pulseslow pulsemed').addClass('pulsefast');
+	        $('#weed').delay(250).queue(function(next){
+			    $(this).addClass('pulsefast');
+			    next();
+			});
 	    };
 	    if ((wps - wes) < 0) {
 	        $('#weedspan').addClass('decline');
 	    };
 
+
 	    $('#money, #moneyspan').removeClass();
 
 	    if ((mps - mes) > 0 && (mps - mes) <= 2) {
-	        $('#money').removeClass('pulsefast pulsemed').addClass('pulseslow');
+	        $('#money').delay(250).queue(function(next){
+			    $(this).addClass('pulseslow');
+			    next();
+			});
 	    };
 	    if ((mps - mes) >= 2 && (mps - mes) <= 8) {
-	        $('#money').removeClass('pulsefast pulseslow').addClass('pulsemed');
+	        $('#money').delay(250).queue(function(next){
+			    $(this).addClass('pulsemed');
+			    next();
+			});
 	    };
 	    if ((mps - mes) >= 8) {
-	        $('#money').removeClass('pulseslow pulsemed').addClass('pulsefast');
+	        $('#money').delay(250).queue(function(next){
+			    $(this).addClass('pulsefast');
+			    next();
+			});
 	    };
 	    if ((mps - mes) < 0) {
 	        $('#moneyspan').addClass('decline');
@@ -355,17 +375,36 @@
 	    $('#fertilizer, #fertilizerspan').removeClass();
 
 	    if ((fps - fes) > 0 && (fps - fes) <= 0.8) {
-	        $('#fertilizer').removeClass('pulsefast pulsemed').addClass('pulseslow');
+	        $('#fertilizer').removeClass('pulsefast pulsemed').delay(250).queue(function(next){
+			    $(this).addClass('pulseslow');
+			    next();
+			});
 	    };
 	    if ((fps - fes) >= 0.8 && (fps - fes) <= 2.0) {
-	        $('#fertilizer').removeClass('pulsefast pulseslow').addClass('pulsemed');
+	        $('#fertilizer').removeClass('pulsefast pulseslow').delay(250).queue(function(next){
+			    $(this).addClass('pulsemed');
+			    next();
+			});
 	    };
 	    if ((fps - fes) >= 2.0) {
-	        $('#fertilizer').removeClass('pulseslow pulsemed').addClass('pulsefast');
+	        $('#fertilizer').removeClass('pulseslow pulsemed').delay(250).queue(function(next){
+			    $(this).addClass('pulsefast');
+			    next();
+			});
 	    };
 	    if ((fps - fes) < 0) {
 	        $('#fertilizerspan').addClass('decline');
 	    };
+
+	    if (softAnimations == true) {
+	    	$('#weed, #money, #fertilizer').removeClass('pulsefast pulseslow pulsemed').delay(250).queue(function(next){
+			    $(this).addClass('pulsenone');
+			    next();
+			});
+	    }
+	    else {
+	    	$('.pulsenone').removeClass('pulsenone');
+	    }
 
 	    $('.arrow').addClass('flownone');
 
@@ -699,6 +738,17 @@
 	        }
 	    });
 
+	    $("#switch3").change(function () {
+	        if ($('#switch3').prop('checked')) { 
+	        	softAnimations = false; 
+	        	checkSpeed();
+	        } 
+	        else { 
+	        	softAnimations = true;
+	        	checkSpeed();
+	        }
+	    });
+
 	    $('.dealer').tooltipster({ content: $('<span>A poor bastard that will sell your stuff on the street. <span>+ 0.5$/s</span> | <span>- 0.1g/s</span></span>') });
 	    $('.trailer').tooltipster({ content: $('<span>An old and shabby trailer with some hippies in it, growing kush and consuming fertilizer. <span>+ 0.5g/s</span> | <span>- 0.1u/s</span></span>') });
 		$('.appartment').tooltipster({ content: $('<span>A place with a THC/air ratio of approximately 1:2 full of dedicated potheads to nourish your plants. <span>+ 80g/s</span> | <span>- 15u/s</span></span>') });
@@ -719,17 +769,26 @@
 	   <a class="intro" onclick="saveGame(true)">Export Save</a> 
 	   <a class="intro tooltip" title="Careful! Load up the save you entered." onclick="loadGame()">Import Save</a> 
 	   <a class="intro" onclick="saveGame()">Save</a> 
-	   <a class="intro tooltip" title="Refresh the data from the last save" onclick="loadGame(true)">Load</a> 
+	   <a class="intro tooltip" title="Refresh the data from the last save" onclick="loadGame(true)">Load</a>
+
 	   <span class="kushify-switch tooltip" title="Hit switch if at work or in other imminent danger">
 	   	<input id="switch" type="checkbox" class="input-switch" checked="checked"/>
 	   	<label for="switch"></label><span class="switch-bg"></span>
 	   	<span data-on="Kush" data-off="Coffee" class="switch-labels"></span>
 	   </span> 
+
 	   <span class="kushify-switch tooltip" title="Toggle Particles">
 	   	<input id="switch2" type="checkbox" class="input-switch" checked="checked"/>
 	   	<label for="switch2"></label><span class="switch-bg"></span>
 	   	<span data-on="Fancy" data-off="Fast" class="switch-labels"></span>
 	   </span>
+
+	   <span class="kushify-switch tooltip" title="Toggle Animations">
+	   	<input id="switch3" type="checkbox" class="input-switch" checked="checked"/>
+	   	<label for="switch3"></label><span class="switch-bg"></span>
+	   	<span data-on="Bouncy" data-off="Static" class="switch-labels"></span>
+	   </span>
+
 	   <a onclick="cheatNow()" class="tooltip" title="You don't really want to do this.">Enter Cheat</a> 
 	   <a class="intro tooltip dev" onclick="clearCookie()" title="Delete the Savegame you had. Refresh then to start a new game!">Clear Save</a>
 	   

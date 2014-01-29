@@ -440,9 +440,11 @@ body {
 .flownone { -webkit-animation-play-state: paused; -moz-animation-play-state: paused; animation-play-state: paused; }
 
 /* PULSE ANIMATION CLASSES */
-.pulseslow { -webkit-animation: pulse 1s infinite alternate; -moz-animation: pulse 1s infinite alternate; animation: pulse 1s infinite alternate; }
-.pulsemed { -webkit-animation: pulse 0.5s infinite alternate; -moz-animation: pulse 0.5s infinite alternate; animation: pulse 0.5s infinite alternate; }
 .pulsefast { -webkit-animation: pulse 0.3s infinite alternate; -moz-animation: pulse 0.3s infinite alternate; animation: pulse 0.3s infinite alternate; }
+.pulsemed { -webkit-animation: pulse 0.5s infinite alternate; -moz-animation: pulse 0.5s infinite alternate; animation: pulse 0.5s infinite alternate; }
+.pulseslow { -webkit-animation: pulse 1s infinite alternate; -moz-animation: pulse 1s infinite alternate; animation: pulse 1s infinite alternate; }
+
+.pulsenone { -webkit-animation-play-state: paused; -moz-animation-play-state: paused; animation-play-state: paused; }
 
 /* PULSE ANIMATION */
 @-webkit-keyframes pulse {
