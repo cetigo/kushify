@@ -741,11 +741,15 @@
 	    $("#switch3").change(function () {
 	        if ($('#switch3').prop('checked')) { 
 	        	softAnimations = false; 
-	        	checkSpeed();
+	        	if (introstep == 4) {
+	        		checkSpeed();
+	        	};
 	        } 
 	        else { 
 	        	softAnimations = true;
-	        	checkSpeed();
+	        	if (introstep == 4) {
+	        		checkSpeed();
+	        	};
 	        }
 	    });
 
