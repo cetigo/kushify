@@ -326,22 +326,13 @@
 	    $('#weed, #weedspan').removeClass();
 
 	    if ((wps - wes) > 0 && (wps - wes) <= 1) {
-	        $('#weed').delay(250).queue(function(next){
-			    $(this).addClass('pulseslow');
-			    next();
-			});
+	        $('#weed').addClass('pulseslow');
 	    };
 	    if ((wps - wes) >= 1 && (wps - wes) <= 4) {
-	        $('#weed').delay(250).queue(function(next){
-			    $(this).addClass('pulsemed');
-			    next();
-			});
+	        $('#weed').addClass('pulsemed');
 	    };
 	    if ((wps - wes) >= 4) {
-	        $('#weed').delay(250).queue(function(next){
-			    $(this).addClass('pulsefast');
-			    next();
-			});
+	        $('#weed').addClass('pulsefast');
 	    };
 	    if ((wps - wes) < 0) {
 	        $('#weedspan').addClass('decline');
@@ -351,22 +342,13 @@
 	    $('#money, #moneyspan').removeClass();
 
 	    if ((mps - mes) > 0 && (mps - mes) <= 2) {
-	        $('#money').delay(250).queue(function(next){
-			    $(this).addClass('pulseslow');
-			    next();
-			});
+	        $('#money').addClass('pulseslow');
 	    };
 	    if ((mps - mes) >= 2 && (mps - mes) <= 8) {
-	        $('#money').delay(250).queue(function(next){
-			    $(this).addClass('pulsemed');
-			    next();
-			});
+	        $('#money').addClass('pulsemed');
 	    };
 	    if ((mps - mes) >= 8) {
-	        $('#money').delay(250).queue(function(next){
-			    $(this).addClass('pulsefast');
-			    next();
-			});
+	        $('#money').addClass('pulsefast');
 	    };
 	    if ((mps - mes) < 0) {
 	        $('#moneyspan').addClass('decline');
@@ -375,22 +357,13 @@
 	    $('#fertilizer, #fertilizerspan').removeClass();
 
 	    if ((fps - fes) > 0 && (fps - fes) <= 0.8) {
-	        $('#fertilizer').removeClass('pulsefast pulsemed').delay(250).queue(function(next){
-			    $(this).addClass('pulseslow');
-			    next();
-			});
+	        $('#fertilizer').addClass('pulseslow');
 	    };
 	    if ((fps - fes) >= 0.8 && (fps - fes) <= 2.0) {
-	        $('#fertilizer').removeClass('pulsefast pulseslow').delay(250).queue(function(next){
-			    $(this).addClass('pulsemed');
-			    next();
-			});
+	        $('#fertilizer').addClass('pulsemed');
 	    };
 	    if ((fps - fes) >= 2.0) {
-	        $('#fertilizer').removeClass('pulseslow pulsemed').delay(250).queue(function(next){
-			    $(this).addClass('pulsefast');
-			    next();
-			});
+	        $('#fertilizer').addClass('pulsefast');
 	    };
 	    if ((fps - fes) < 0) {
 	        $('#fertilizerspan').addClass('decline');
