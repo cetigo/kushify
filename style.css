@@ -1,0 +1,741 @@
+* { margin: 0; padding: 0; }
+
+body {
+	background-color: #222;
+    background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAAECAYAAACp8Z5+AAAAGklEQVQIW2NkYGD4D8SMQAwGcAY2AbBKDBUAVuYCBQPd34sAAAAASUVORK5CYII=);
+    background-repeat: repeat;
+    overflow-x: hidden;
+    position: relative;
+    width: 100%;
+}
+
+.meny {
+	display: none;
+	padding: 20px;
+    color: #F3F0D1;
+    overflow: hidden;
+    background-color: rgba(106, 194, 98, 1);
+    font-family: Helvetica;
+
+    -webkit-box-sizing: border-box;
+       -moz-box-sizing: border-box;
+            box-sizing: border-box;
+}
+
+.meny b {
+	margin: 0 5px 0;
+	padding: 5px;
+	color: #fff;
+	cursor: default;
+	background: #7e7e7e;
+	border-radius: 5px;
+	border: 2px solid #e1e1e1;
+	-webkit-box-shadow: 0 1px 2px #777;
+	-moz-box-shadow: 0 2px 1px #777;
+	box-shadow: 0 2px 1px #777;
+}
+
+.meny a {
+	cursor: pointer;
+	text-decoration: none;
+	-webkit-transition: all 0.2s;
+	-moz-transition: all 0.2s;
+	-ms-transition: all 0.2s;
+	-o-transition: all 0.2s;
+	transition: all 0.2s;
+    height: 40px;
+    line-height: 40px;
+    display: inline-block;
+    background: #95be0a;
+    border-radius: 5px;
+    border: 3px solid #e1e1e1;
+    padding: 0 5px 0;
+    color: #fff;
+    vertical-align: top;
+    margin: 0 5px 0;
+    -webkit-box-shadow: 0 1px 2px #777;
+	-moz-box-shadow: 0 2px 1px #777;
+	box-shadow: 0 2px 1px #777;
+}
+
+.meny a.dev {
+	background: #CD2209;
+}
+
+.meny a:hover {
+	border-color: #d5d5d5;
+}
+
+.meny a:active {
+	background: #7e7e7e;
+}
+
+.meny textarea {
+	border: 3px solid #cccccc;
+	padding: 5px;
+	border-radius: 5px;
+	font-family: Consolas, Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace, serif;
+	resize: none;
+	margin: 5px 5px 0;
+	-webkit-box-shadow: 0 1px 2px #777;
+	-moz-box-shadow: 0 2px 1px #777;
+	box-shadow: 0 2px 1px #777;
+}
+
+.meny ul {
+	margin-left: 25px;
+	margin-top: 15px;
+	cursor: default;
+	display: inline;
+}
+
+.meny ul li {
+	display: inline-block;
+	width: 150px;
+	list-style: none;
+	font-weight: 700;
+	padding: 3px 5px;
+}
+
+
+#containerwtom, #containermtof, #containerftow {
+	width: 380px;
+	border-radius: 5px;
+	position: absolute;
+
+	-webkit-box-shadow: 0 1px 2px #222;
+	-moz-box-shadow: 0 2px 1px #222;
+	box-shadow: 0 2px 1px #222;
+
+	text-align: justify;
+	padding: 5px;
+
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+
+	-webkit-transition: background 0.2s;
+	-moz-transition: background 0.2s;
+	-ms-transition: background 0.2s;
+	-o-transition: background 0.2s;
+	transition: background 0.2s;
+}
+
+#containerwtom {
+	background: url('weedbg.jpg');
+	top: 115px;
+	left: 50%;
+	margin-left: 180px;
+}
+
+#containerftow {
+	background: url('fertilizerbg.jpg');
+	top: 115px;
+	left: 50%;
+	margin-left: -570px;
+}
+
+#containermtof {
+	background: url('moneybg.jpg');
+	position: relative;
+	margin: 610px auto 15px;
+}
+
+#list {
+	background: url(pattern.png);
+	border-radius: 5px;
+	text-align: left;
+	height: 140px;
+	overflow-x: hidden;
+	/*overflow-y: scroll; Not yet required */
+	text-align: justify;
+}
+
+#list span {
+	font-family: "Chau Philomene One";
+	color: rgba(240,240,240,1);
+	font-size: 18px;
+	font-weight: 400;
+	cursor: pointer;
+	text-align: justify;
+	display: block;
+	padding: 3px;
+	-webkit-transition: background 0.2s;
+	-moz-transition: background 0.2s;
+	-ms-transition: background 0.2s;
+	-o-transition: background 0.2s;
+	transition: background 0.2s;
+}
+
+#list span:first-letter {
+	font-size: 22px;
+}
+
+#list span:hover{
+	color: #fff;
+	background-color: rgba(20,20,20,0.6) ; /* to override jquery's cover */
+}
+
+#list span:active {
+	background-color: rgba(20,20,20,0.8) !important; /* to override jquery's cover */
+}
+
+/* BASIC RESOURCE BUTTON */
+#fertilizer, #weed, #money { 
+	position: absolute;
+	background-color: #275752;
+	font-size: 60px;
+	font-family: "Chau Philomene One";
+	color: #F3F0D1;
+	border-radius: 70px;
+	border: 5px solid transparent;
+	border-bottom-color: rgba(0,0,0,0.35);
+	text-shadow: 0px 3px 0px #b2a98f,
+             0px 4px 3px rgba(0,0,0,0.4),
+             0px 8px 13px rgba(0,0,0,0.1),
+             0px 18px 23px rgba(0,0,0,0.1);
+
+    -webkit-box-shadow: 0 3px 2px #222;
+	-moz-box-shadow: 0 3px 2px #222;
+	box-shadow: 0 3px 2px #222;
+
+	cursor: pointer;
+
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+
+	height: 250px;
+	width: 250px;
+	line-height: 250px;
+	text-align: center;
+
+	-webkit-transition: background 0.4s, border 0.1s, margin 0.1s;
+	-moz-transition: background 0.4s, border 0.1s, margin 0.1s;
+	-ms-transition: background 0.4s, border 0.1s, margin 0.1s;
+	-o-transition: background 0.4s, border 0.1s, margin 0.1s;
+	transition: background 0.4s, border 0.1s, margin 0.1s;
+}
+
+/* EACH BUTTON POSITION */
+#weed {
+	top: 260px;
+	left: 50%;
+	margin-left: -130px;
+}
+
+#money {
+	top: 400px;
+	left: 50%;
+	margin-left: 155px;
+}
+
+#fertilizer {
+	top: 400px;
+	left: 50%;
+	margin-left: -415px;
+}
+
+#weedspan, #moneyspan, #fertilizerspan {
+	-moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    -webkit-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+
+    z-index: 100;
+}
+
+/* EACH RESOURCE BUTTON IF DECLINING */
+#weedspan.decline, #moneyspan.decline, #fertilizerspan.decline {
+	color: rgba(255, 239, 189, 1);
+	text-shadow: 0px 3px 0px #963232, 0px 4px 10px rgba(0,0,0,0.15), 0px 14px 2px rgba(0,0,0,0.1), 0px 24px 30px rgba(0,0,0,0.1);
+}
+
+/* RESOURCE BUTTON PRESSDOWN ANIMATION */
+#weed:active, #money:active, #fertilizer:active {
+	border-bottom-width: 0;
+	margin-top: 5px;
+}
+
+/* BASIC PER SECOND INDICATOR */
+.wps, .mps, .fps {
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+	-webkit-transition: background 0.4s, border 0.2s, margin 0.2s;
+	-moz-transition: background 0.4s, border 0.2s, margin 0.2s;
+	-ms-transition: background 0.4s, border 0.2s, margin 0.2s;
+	-o-transition: background 0.4s, border 0.2s, margin 0.2s;
+	transition: background 0.4s, border 0.2s, margin 0.2s;
+	text-shadow: 0px 2px 2px rgba(0,0,0,0.9);
+	text-align: center;
+	left: 50%;
+	width: 260px;
+	margin-left: -130px;
+	top: 45px;
+	font-family: "Chau Philomene One";
+	color: #F3F0D1;
+	font-size: 20px;
+	z-index: 1;
+	cursor: pointer;
+	position: absolute;
+	pointer-events:none; /* Make it click-through-able */
+}
+
+.mps:after {content: " $/s"}
+.wps:after {content: " g/s"}
+.fps:after {content: " u/s"}
+
+/* BASIC HOVER LAYER FROM RESOURCE BUTTON */
+#fertilizer:after, #weed:after, #money:after {
+	-webkit-transition: background 0.2s;
+	-moz-transition: background 0.2s;
+	-ms-transition: background 0.2s;
+	-o-transition: background 0.2s;
+	transition: background 0.2s;
+	content: "";
+	background-color: rgba(255,255,255,0);
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	top: -5px;
+	left: -5px;
+	z-index: 0;
+	padding: 5px 5px 0;
+	border-radius: 70px;
+}
+
+/* HOVER LAYER FROM RESOURCE BUTTON */
+#fertilizer:hover:after, #weed:hover:after, #money:hover:after {
+	background-color: rgba(255,255,255,0.15);
+}
+
+/* ALERT LAYER FROM RESOURCE BUTTON */
+#fertilizer.alert:after, #weed.alert:after, #money.alert:after {
+	background-color: rgba(255,80,80,0.35);
+}
+
+/* ACTIVE LAYER FROM RESOURCE BUTTON */
+#fertilizer:active:after, #weed:active:after, #money:active:after, .wps:active ~ #weed:after, .mps:active ~ #money:after{
+	background-color: rgba(255,255,255,0.25);
+}
+
+/* BUTTON PRESSDOWN APPLY TO PER SECOND INDICATOR */
+ #weed:active ~ .wps, #money:active ~ .mps, #fertilizer:active ~ .fps {
+	border-bottom-width: 0;
+	margin-top: 5px;
+}
+
+/* RESOURCE BUTTON BACKGROUNDS */
+#weed { background: url(weed.jpg) top center; background-position-y: -5px; }
+#money { background: url(money.jpg) top center; background-position-y: -5px;}
+#fertilizer { background: url(fertilizer.jpg) top center; background-position-y: -5px;}
+
+/* BASIC ARROW */
+.arrow {
+	position: absolute;
+	font-family: "Chau Philomene One";
+	width: 200px;
+	height: 30px;
+	background-color: #666;
+	
+	color: #fff;
+	border-radius: 15px;
+	-webkit-box-shadow: 0 2px 2px #222;
+	-moz-box-shadow: 0 2px 2px #222;
+	box-shadow: 0 2px 2px #222;
+	text-align: center;
+	font-size: 16px;
+	line-height: 30px;
+	text-shadow: 0px 2px 2px rgba(0,0,0,0.9);
+
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}
+
+/* ARROW BACKGROUND ANIMATION */
+@-webkit-keyframes mov {
+    0% { background-position: 200px 0; }
+    100% { background-position: 0px 0; }
+}
+@-moz-keyframes mov {
+    0% { background-position: 200px 0; }
+    100% { background-position: 0px 0; }
+}
+@keyframes mov {
+    0% { background-position: 200px 0; }
+    100% { background-position: 0px 0; }
+}
+
+@-webkit-keyframes mov2 {
+    0% { background-position: 0px 0; }
+    100% { background-position: 200px 0; }
+}
+@-moz-keyframes mov2 {
+    0% { background-position: 0px 0; }
+    100% { background-position: 200px 0; }
+}
+@keyframes mov2 {
+    0% { background-position: 0px 0; }
+    100% { background-position: 200px 0; }
+}
+
+
+/* EACH ARROW POSITION, ANIMATION, TEXT, BACKGROUND */
+.arrow.mtof {
+	top: 570px;
+	left: 50%;
+	margin-left: -115px;
+	width: 230px;
+	background: url(moneyarrow.jpg) repeat;
+}
+.arrow.mtof:after { content: " $/s"; font-size: 14px; }
+
+.arrow.ftow {
+	top: 320px;
+	left: 50%;
+	margin-left: -320px;
+	-webkit-transform: rotate(-20deg);
+	-moz-transform: rotate(-20deg);
+	transform: rotate(-20deg);
+	width: 160px;
+	background: url(fertilizerarrow.jpg) repeat;
+}
+.arrow.ftow:after { content: " u/s"; font-size: 14px; }
+
+.arrow.wtom {
+	top: 320px;
+	left: 50%;
+	margin-left: 160px;
+	-webkit-transform: rotate(20deg);
+	-moz-transform: rotate(20deg);
+	transform: rotate(20deg);
+	width: 160px;
+	background: url(weedarrow.jpg) repeat;
+}
+.arrow.wtom:after { content: " g/s"; font-size: 14px; }
+
+/* ARROW ANIMATION CLASSES */
+.flowslow { -webkit-animation: mov2 6s linear infinite; -moz-animation: mov2 6s linear infinite; animation: mov2 6s linear infinite; }
+.flowmed { -webkit-animation: mov2 4s linear infinite; -moz-animation: mov2 4s linear infinite; animation: mov2 4s linear infinite; }
+.flowfast { -webkit-animation: mov2 2s linear infinite; -moz-animation: mov2 2s linear infinite; animation: mov2 2s linear infinite; }
+
+.flowislow { -webkit-animation: mov 6s linear infinite; -moz-animation: mov 6s linear infinite; animation: mov 6s linear infinite; }
+.flowimed { -webkit-animation: mov 4s linear infinite; -moz-animation: mov 4s linear infinite; animation: mov 4s linear infinite; }
+.flowifast { -webkit-animation: mov 2s linear infinite; -moz-animation: mov 2s linear infinite; animation: mov 2s linear infinite; }
+
+.flownone { -webkit-animation-play-state: paused; -moz-animation-play-state: paused; animation-play-state: paused; }
+
+/* PULSE ANIMATION CLASSES */
+.pulseslow { -webkit-animation: pulse 1s infinite alternate; -moz-animation: pulse 1s infinite alternate; animation: pulse 1s infinite alternate; }
+.pulsemed { -webkit-animation: pulse 0.5s infinite alternate; -moz-animation: pulse 0.5s infinite alternate; animation: pulse 0.5s infinite alternate; }
+.pulsefast { -webkit-animation: pulse 0.3s infinite alternate; -moz-animation: pulse 0.3s infinite alternate; animation: pulse 0.3s infinite alternate; }
+
+/* PULSE ANIMATION */
+@-webkit-keyframes pulse {
+    0% {
+    	-moz-transform: scale(0.99);
+    	-ms-transform: scale(0.99);
+    	-o-transform: scale(0.99);
+    	-webkit-transform: scale(0.99);
+    	transform: scale(0.99);
+    } 
+    100% {
+    	-moz-transform: scale(1.02);
+    	-ms-transform: scale(1.02);
+    	-o-transform: scale(1.02);
+    	-webkit-transform: scale(1.02);
+    	transform: scale(1.02)
+    }
+}
+@-moz-keyframes pulse {
+    0% {
+    	-moz-transform: scale(0.99);
+    	-ms-transform: scale(0.99);
+    	-o-transform: scale(0.99);
+    	-webkit-transform: scale(0.99);
+    	transform: scale(0.99);
+    } 
+    100% {
+    	-moz-transform: scale(1.02);
+    	-ms-transform: scale(1.02);
+    	-o-transform: scale(1.02);
+    	-webkit-transform: scale(1.02);
+    	transform: scale(1.02)
+    }
+}
+@keyframes pulse {
+    0% {
+    	-moz-transform: scale(0.95);
+    	-ms-transform: scale(0.95);
+    	-o-transform: scale(0.95);
+    	-webkit-transform: scale(0.95);
+    	transform: scale(0.95);
+    } 
+    100% {
+    	-moz-transform: scale(1.05);
+    	-ms-transform: scale(1.05);
+    	-o-transform: scale(1.05);
+    	-webkit-transform: scale(1.05);
+    	transform: scale(1.05)
+    }
+}
+
+
+
+
+#title {
+	margin: 0 auto;
+	font-size: 150px;
+	text-align: center;
+	font-family: "Chau Philomene One";
+	color: #F3F0D1;
+	cursor: default;
+
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+
+	-moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    -webkit-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+
+	text-shadow: 0px 3px 0px #b2a98f,
+             0px 4px 3px rgba(0,0,0,0.4),
+             0px 8px 13px rgba(0,0,0,0.1),
+             0px 18px 23px rgba(0,0,0,0.1);
+}
+
+#title.sizedown {
+	margin: 0 auto;
+	font-size: 50px;
+	background-color: rgba(106, 194, 98, 1);
+}
+
+.dealer:after, .trailer:after, .greenhouse:after, .export1:after, .enchantcursor1:after{
+	font-size: 22px;
+	font-weight: 400;
+	margin-left: 50px;
+}
+
+/* INTRO */
+#intro { 
+	position: absolute;
+	top: 300px;
+	left: 50%;
+	width: 700px;
+	margin-left: -350px;
+	text-align: center;
+	font-family: "Chau Philomene One";
+	color: #F3F0D1;
+	font-size: 46px;
+	text-shadow: 0px 4px 3px rgba(0,0,0,0.4),
+             0px 8px 13px rgba(0,0,0,0.1),
+             0px 18px 23px rgba(0,0,0,0.1);
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    -webkit-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+}
+
+#intro.side {
+	margin-left: -900px;
+}
+
+#intro #introbutton {
+	cursor: pointer;
+	font-family: "Chau Philomene One";
+	color: #F3F0D1;
+	font-size: 62px;
+	padding: 20px 90px 20px;
+	background-color: rgba(255,255,255,0.6);
+	border-radius: 15px;
+	text-decoration: none;
+}
+
+#intro.tiny { 
+		width: 700px;
+		margin-left: -350px;
+		font-size: 36px;
+		top: 200px;
+}
+
+#intro #introbutton:hover {
+	color: #ffe;
+	background-color: rgba(255,255,255,0.7);
+}
+
+#alertMessage, #alertMessage2, #alertMessage3, #alertMessage4 {
+	z-index:60;
+    font-family: "Chau Philomene One";
+	color: #F3F0D1;
+	background-color: rgba(106, 194, 98, 1);
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    font-size: 18px;
+    padding:5px;
+    cursor:default;
+    position: fixed;
+    left: 50%;
+    margin-left: -95px;
+    width:190px;
+    height:20px;
+    top:170px;
+    text-align:center;
+    display:none;
+}
+
+#alertMessage2, #alertMessage4 {
+	background-color: #CD2209;
+}
+
+/* KUSHIFY-SWITCH */
+.kushify-switch {
+  position: relative;
+  width: 120px;
+  height: 40px;
+  display: inline-block;
+  background: #e1e1e1;
+  border-radius: 5px;
+  border: 3px solid #e1e1e1;
+  padding: 0;
+  margin: 0 5px 0;
+  -webkit-box-shadow: 0 1px 2px #777;
+  -moz-box-shadow: 0 2px 1px #777;
+  box-shadow: 0 2px 1px #777;
+}
+.kushify-switch:hover {
+  border-color: #d5d5d5;
+}
+.kushify-switch input.input-switch {
+  position: absolute;
+  opacity: 0;
+  z-index: -10;
+}
+.kushify-switch span.switch-bg {
+  position: absolute;
+  z-index: 0;
+  width: 50%;
+  height: inherit;
+  left: 50%;
+  background: #7e7e7e;
+  transition: all 0.3s;
+  -webkit-transition: all 0.3s;
+  border-radius: 5px;
+}
+.kushify-switch span.switch-labels {
+  position: absolute;
+  z-index: 1;
+  width: inherit;
+  height: inherit;
+}
+.kushify-switch span.switch-labels:before, .kushify-switch span.switch-labels:after {
+  height: 40px;
+  width: 50%;
+  line-height: 40px;
+  transition: all 0.3s;
+  -webkit-transition: all 0.3s;
+  text-align: center;
+}
+.kushify-switch span.switch-labels:before {
+  content: attr(data-on);
+  left: 0;
+  position: absolute;
+  color: #b7b7b7;
+}
+.kushify-switch span.switch-labels:after {
+  content: attr(data-off);
+  position: absolute;
+  right: 0;
+  color: #fff;
+}
+.kushify-switch label {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 2;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.input-switch:checked ~ .switch-bg {
+  left: 0%;
+  background: #95be0a;
+}
+
+.input-switch:checked ~ .switch-labels:before {
+  color: #fff;
+}
+
+.input-switch:checked ~ .switch-labels:after {
+  color: #b7b7b7;
+}
+
+/* TOOLTIPSTER */
+.tooltipster-content span {
+	font-family: "Helvetica", Arial, sans-serif;
+	font-size: 12px;
+	line-height: 14px;
+	color: #eee;
+	font-style: italic;
+}
+
+.tooltipster-content span span:first-child {
+	font-size: 14px;
+	font-weight: 700;
+	color: #79F58F;
+	font-style: normal;
+	text-shadow: 0px 15px 5px rgba(0,0,0,0.1),
+                 10px 20px 5px rgba(0,0,0,0.05),
+                 -10px 20px 5px rgba(0,0,0,0.05);
+}
+
+.tooltipster-content span span:last-child {
+	font-size: 14px;
+	font-weight: 700;
+	/*color: #DE080A;*/
+	color: #FF3338;
+	font-style: normal;
+	text-shadow: 0px 15px 5px rgba(0,0,0,0.1),
+                 10px 20px 5px rgba(0,0,0,0.05),
+                 -10px 20px 5px rgba(0,0,0,0.05);
+}
+
+*.intro { display: none; }
+
+@media (max-width: 1750px) {
+	#intro.side {
+		margin-left: -600px;
+	}
+
+	#intro { 
+		width: 700px;
+		margin-left: -350px;
+		font-size: 36px;
+		top: 200px;
+	}
+
+	#title {
+		font-size: 130px;
+	}
+
+}
