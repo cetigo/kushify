@@ -51,17 +51,21 @@
 
 	 //Facility and DataHeap
 	var facilities = new Array(); //dealer, trailer, greenhouse, export1, etc
-	facilities[0] = new Array(0, 15, 'dealer', 0.01, 0.05); //amount, price, name, expense, income DEALER
-	facilities[1] = new Array(0, 30, 'trailer', 0.01, 0.05); //Trailer
-	facilities[2] = new Array(0, 5000, 'appartment', 1.5, 8); //Appartment
-	facilities[3] = new Array(0, 3000, 'export1', 1.8, 10); //Export1
-	facilities[4] = new Array(0, 2500, 'enchantcursor1'); //Echantcursor1
-	facilities[5] = new Array(0, 40, 'fakefarm', 0.03, 0.05); //Fakefarm
-	facilities[6] = new Array(0, 3500, 'fakefarm2', 4, 8.5); //Fakefarm2
-	facilities[7] = new Array(0, 100000, 'export2', 60, 340); //export2
-	facilities[8] = new Array(0, 140000, 'greenhouse', 40, 225); //greenhouse
 
-	 //Infrastructure Intervention
+	//amount[0], price[1], className[2], expense[3], income[4], type[5], text[6], unit[7]
+	//type: 1 - W to M; 2 - M to F; 3 - F to W 
+	facilities[0] = new Array(0, 15, '.dealer', 0.01, 0.05, 1, " Dealer - buy for ", "$"); //Dealer
+	facilities[1] = new Array(0, 30, '.trailer', 0.01, 0.05, 3, " Trailer - buy for ", "$"); //Trailer
+	facilities[2] = new Array(0, 5000, '.appartment', 1.5, 8, 3, " Hippie Appartments - buy for ", "$"); //Appartment
+	facilities[3] = new Array(0, 3000, '.export1', 1.8, 10, 1, " Coffee Shops - buy for ", "$"); //Export1
+	facilities[4] = new Array(0, 2500, '.enchantcursor1', 0, 0, 0, " Cursor Enchantments - buy for ", "g, $ and u"); //Echantcursor1
+	facilities[5] = new Array(0, 40, '.fakefarm', 0.03, 0.05, 2, " Undercover Farms - buy for ", "$"); //Fakefarm
+	facilities[6] = new Array(0, 3500, '.fakefarm2', 4, 8.5, 2, " Nuclear Waste Facilities - buy for ", "$"); //Fakefarm2
+	facilities[7] = new Array(0, 100000, '.export2', 60, 340, 1, " Mafia Contracts - buy for ", "$"); //export2
+	facilities[8] = new Array(0, 140000, '.greenhouse', 40, 225, 3, " Greenhouses - buy for ", "$"); //greenhouse
+
+
+	//Infrastructure Intervention
 	var dealersFrozen = false;
 	var weedersFrozen = false;
 	var tradersFrozen = false;
@@ -148,14 +152,7 @@
 	        if (money > (increasePrice(0, (facilities[0][0] + 1)) - 1)) { //check money
 	            facilities[0][0]++; //add one dealer
 	            money = money - increasePrice(0, facilities[0][0]); //distract money
-
-	            wes = wes + 0.01; //increase weed expense
-	            mps = mps + 0.05; //increase money per second
-
-	            var printString = facilities[0][0] + " Dealer - buy for " + addCommas(Math.round(increasePrice(0, (facilities[0][0] + 1)))) + "$";
-	            $('.dealer').text(printString); //print
-	            updatePerSecond();
-
+	            updateFacilities();
 	            if (introstep == 3) {
 	                introHandler();
 	            };
@@ -171,13 +168,7 @@
 	        if (money > (increasePrice(1, (facilities[1][0] + 1)) - 1)) { //check money
 	            facilities[1][0]++; //add one trailer
 	            money = money - increasePrice(1, facilities[1][0]); //distract money
-
-	            wps = wps + 0.05; // increase weed per second
-	            fes = fes + 0.01; // increase fertilizer expense
-
-	            var printString = facilities[1][0] + " Trailer - buy for " + addCommas(Math.round(increasePrice(1, (facilities[1][0] + 1)))) + "$";
-	            $('.trailer').text(printString);
-	            updatePerSecond();
+	            updateFacilities();
 	            return;
 	        };
 	        $(".trailer").css("background-color", "rgba(255,80,80,0.9)");
@@ -190,13 +181,7 @@
 	        if (money > (increasePrice(3, (facilities[3][0] + 1)) - 1)) { //check money
 	            facilities[3][0]++; //add one mafia connection
 	            money = money - increasePrice(3, facilities[3][0]); //distract money
-
-	            wes = wes + 1.8; //increase weed expense
-	            mps = mps + 10; //increase money per second
-
-	            var printString = facilities[3][0] + " Coffee Shops - buy for " + addCommas(Math.round(increasePrice(3, (facilities[3][0] + 1)))) + "$";
-	            $('.export1').text(printString); //print
-	            updatePerSecond();
+	            updateFacilities();
 	            return;
 	        };
 	        $(".export1").css("background-color", "rgba(255,80,80,0.9)");
@@ -209,13 +194,7 @@
 	        if (money > (increasePrice(2, (facilities[2][0] + 1)) - 1)) { //check money
 	            facilities[2][0]++; //add one trailer
 	            money = money - increasePrice(2, facilities[2][0]); //distract money
-
-	            wps = wps + 8; // increase weed per second
-	            fes = fes + 1.5; // increase fertilizer expense
-
-	            var printString = facilities[2][0] + " Hippie Appartments - buy for " + addCommas(Math.round(increasePrice(2, (facilities[2][0] + 1)))) + "$";
-	            $('.appartment').text(printString);
-	            updatePerSecond();
+	            updateFacilities();
 	            return;
 	        };
 	        $(".appartment").css("background-color", "rgba(255,80,80,0.9)");
@@ -230,12 +209,7 @@
 	            weed = weed - increasePrice(4, facilities[4][0]); //distract weed
 	            fertilizer = fertilizer - increasePrice(4, facilities[4][0]); //distract weed
 	            money = money - increasePrice(4, facilities[4][0]); //distract weed
-
-	            cursorPower = cursorPower + 1.5; // enhance Power
-
-	            var printString = facilities[4][0] + " Cursor Enchantments - buy for " + addCommas(Math.round(increasePrice(4, (facilities[4][0] + 1)))) + "g, $ and u";
-	            $('.enchantcursor1').text(printString);
-	            updatePerSecond();
+	            updateFacilities();
 	            return;
 	        };
 	        $(".enchantcursor1").css("background-color", "rgba(255,80,80,0.9)");
@@ -248,13 +222,7 @@
 	        if (money > (increasePrice(5, (facilities[5][0] + 1)) - 1)) { //check weed
 	            facilities[5][0]++; //add one
 	            money = money - increasePrice(5, facilities[5][0]); //distract weed
-
-	            mes = mes + 0.03; //increase money expense
-	            fps = fps + 0.05; //increase fertilizer per second
-
-	            var printString = facilities[5][0] + " Undercover Farms - buy for " + addCommas(Math.round(increasePrice(5, (facilities[5][0] + 1)))) + "$";
-	            $('.fakefarm').text(printString);
-	            updatePerSecond();
+	            updateFacilities();
 	            return;
 	        };
 	        $(".fakefarm").css("background-color", "rgba(255,80,80,0.9)");
@@ -267,13 +235,7 @@
 	        if (money > (increasePrice(6, (facilities[6][0] + 1)) - 1)) { //check weed
 	            facilities[6][0]++; //add one
 	            money = money - increasePrice(6, facilities[6][0]); //distract weed
-
-	            mes = mes + 4; //increase money expense
-	            fps = fps + 8.5; //increase fertilizer per second
-
-	            var printString = facilities[6][0] + " Nuclear Waste Facilities - buy for " + addCommas(Math.round(increasePrice(6, (facilities[6][0] + 1)))) + "$";
-	            $('.fakefarm2').text(printString);
-	            updatePerSecond();
+	            updateFacilities();
 	            return;
 	        };
 	        $(".fakefarm2").css("background-color", "rgba(255,80,80,0.9)");
@@ -286,13 +248,7 @@
 	        if (money > (increasePrice(7, (facilities[7][0] + 1)) - 1)) { //check money
 	            facilities[7][0]++; //add one mafia connection
 	            money = money - increasePrice(7, facilities[7][0]); //distract money
-
-	            wes = wes + 60; //increase weed expense
-	            mps = mps + 340; //increase money per second
-
-	            var printString = facilities[7][0] + " Mafia Contracts - buy for " + addCommas(Math.round(increasePrice(7, (facilities[7][0] + 1)))) + "$";
-	            $('.export2').text(printString); //print
-	            updatePerSecond();
+	            updateFacilities();
 	            return;
 	        };
 	        $(".export2").css("background-color", "rgba(255,80,80,0.9)");
@@ -305,13 +261,7 @@
 	        if (money > (increasePrice(8, (facilities[8][0] + 1)) - 1)) { //check money
 	            facilities[8][0]++; //add one trailer
 	            money = money - increasePrice(8, facilities[8][0]); //distract money
-
-	            wps = wps + 225; // increase weed per second
-	            fes = fes + 40; // increase fertilizer expense
-
-	            var printString = facilities[8][0] + " Greenhouses - buy for " + addCommas(Math.round(increasePrice(8, (facilities[8][0] + 1)))) + "$";
-	            $('.greenhouse').text(printString);
-	            updatePerSecond();
+				updateFacilities();
 	            return;
 	        };
 	        $(".greenhouse").css("background-color", "rgba(255,80,80,0.9)");
@@ -422,6 +372,29 @@
 	    $('.ftow').text(addCommas(Math.round(fes * 10 * 100) / 100));
 	    $('.mtof').text(addCommas(Math.round(mes * 10 * 100) / 100));
 	    checkSpeed(); //check for pulse animations
+	}
+
+	function updateFacilities() {
+		//calculate the new expenses and gains from the facilities, print all shop labels
+	    for (var i = 0; i < facilities.length; i++) {
+	    	if (facilities[i][5] == 1) {
+	    		wes = wes + (facilities[i][0] * facilities[i][3]);
+	    		mps = mps + (facilities[i][0] * facilities[i][4]);
+	    	}
+	    	if (facilities[i][5] == 2) {
+	    		mes = mes + (facilities[i][0] * facilities[i][3]);
+	    		fps = fps + (facilities[i][0] * facilities[i][4]);
+	    	}
+	    	if (facilities[i][5] == 3) {
+	    		fes = fes + (facilities[i][0] * facilities[i][3]);
+	    		wps = wps + (facilities[i][0] * facilities[i][4]);
+	    	}
+	    	var printString = facilities[i][0] + facilities[i][6] + addCommas(Math.round(increasePrice(i, (facilities[i][0] + 1)))) + facilities[i][7];
+		    $(facilities[i][2]).text(printString);
+	    };
+
+	    cursorPower = 1 + (1.5 * facilities[4][0]);
+	    updatePerSecond();
 	}
 
 	function increasePrice(facility, number) {
@@ -591,42 +564,17 @@
 	        $('#switch').prop('checked', true);
 	    }
 
-	    //calculate the new expenses and gains from the facilities
-	    wes = (facilities[0][3] * facilities[0][0]) + (facilities[3][3] * facilities[3][0]) + (facilities[7][3] * facilities[7][0]);
-	    mes = (facilities[5][3] * facilities[5][0]) + (facilities[6][3] * facilities[6][0]);
-	    fes = (facilities[1][3] * facilities[1][0]) + (facilities[8][3] * facilities[8][0]) + (facilities[8][3] * facilities[8][0]);
+	    wes = 0;
+	    mes = 0;
+	    fes = 0;
+	    mps = 0;
+	    fps = 0;
+	    wps = 0;
 
-	    mps = (facilities[0][4] * facilities[0][0]) + (facilities[3][4] * facilities[3][0]) + (facilities[7][4] * facilities[7][0]);
-	    fps = (facilities[5][4] * facilities[5][0]) + (facilities[6][4] * facilities[6][0]);
-	    wps = (facilities[1][4] * facilities[1][0]) + (facilities[2][4] * facilities[2][0]) + (facilities[8][4] * facilities[8][0]);
-
-	    cursorPower = 1 + (1.5 * facilities[4][0]);
-
-	    //print new amounts of facilities aswell as prices
-	    var printString = facilities[0][0] + " Dealer - buy for " + addCommas(Math.round(increasePrice(0, (facilities[0][0] + 1)))) + "$";
-	    $('.dealer').text(printString);
-	    printString = facilities[1][0] + " Trailer - buy for " + addCommas(Math.round(increasePrice(1, (facilities[1][0] + 1)))) + "$";
-	    $('.trailer').text(printString);
-	    printString = facilities[3][0] + " Coffee Shops - buy for " + addCommas(Math.round(increasePrice(3, (facilities[3][0] + 1)))) + "$";
-	    $('.export1').text(printString);
-	    printString = facilities[2][0] + " Hippie Appartments - buy for " + addCommas(Math.round(increasePrice(2, (facilities[2][0] + 1)))) + "$";
-	    $('.appartment').text(printString);
-	    printString = facilities[4][0] + " Cursor Enchantments - buy for " + addCommas(Math.round(increasePrice(4, (facilities[4][0] + 1)))) + "g, $ and u";
-	    $('.enchantcursor1').text(printString);
-	    printString = facilities[5][0] + " Undercover Farms - buy for " + addCommas(Math.round(increasePrice(5, (facilities[5][0] + 1)))) + "$";
-	    $('.fakefarm').text(printString);
-	    printString = facilities[6][0] + " Nuclear Waste Facilities - buy for " + addCommas(Math.round(increasePrice(6, (facilities[6][0] + 1)))) + "$";
-	    $('.fakefarm2').text(printString);
-	    printString = facilities[7][0] + " Mafia Contracts - buy for " + addCommas(Math.round(increasePrice(7, (facilities[7][0] + 1)))) + "$";
-	    $('.export2').text(printString);
-	    printString = facilities[8][0] + " Greenhouses - buy for " + addCommas(Math.round(increasePrice(8, (facilities[8][0] + 1)))) + "$";
-	    $('.greenhouse').text(printString);
+	    updateFacilities();
 
 	    $("#alertMessage3").fadeIn(400);
 	    setTimeout("$('#alertMessage3').fadeOut(400)", 2e3);
-
-	    //update all per second indicators, apply new animation
-	    updatePerSecond();
 	}
 
 	 // COOKIE SAVE AND CHECK
