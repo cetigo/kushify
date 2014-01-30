@@ -697,14 +697,14 @@ body {
 	font-family: "Helvetica", Arial, sans-serif;
 	font-size: 12px;
 	line-height: 14px;
-	color: #eee;
+	/*color: #eee;*/
 	font-style: italic;
 }
 
 .tooltipster-content span span:first-child {
 	font-size: 14px;
 	font-weight: 700;
-	color: #79F58F;
+	color: #77DE47;
 	font-style: normal;
 	text-shadow: 0px 15px 5px rgba(0,0,0,0.1),
                  10px 20px 5px rgba(0,0,0,0.05),
@@ -714,12 +714,24 @@ body {
 .tooltipster-content span span:last-child {
 	font-size: 14px;
 	font-weight: 700;
-	/*color: #DE080A;*/
-	color: #FF3338;
+	color: #DE080A;
+	/*color: #FF3338;*/
 	font-style: normal;
 	text-shadow: 0px 15px 5px rgba(0,0,0,0.1),
                  10px 20px 5px rgba(0,0,0,0.05),
                  -10px 20px 5px rgba(0,0,0,0.05);
+}
+.tooltipster-light {
+	border-radius: 5px; 
+	border: 1px solid #cccccc;
+	background: #ededed;
+	color: #666666;
+}
+.tooltipster-light .tooltipster-content {
+	font-family: Arial, sans-serif;
+	font-size: 14px;
+	line-height: 16px;
+	padding: 8px 10px;
 }
 
 *.intro { display: none; }

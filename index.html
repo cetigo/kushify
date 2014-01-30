@@ -686,7 +686,10 @@
 
 
 	$(document).ready(function () {
-		$('.tooltip').tooltipster();
+		$('.tooltip').tooltipster({
+		   animation: 'fall',
+		   theme: 'tooltipster-light',
+		});
 	    checkCookie();
 	    var hash = window.location.hash;
 	    if (hash == '#coffee') {
@@ -728,15 +731,15 @@
 	        }
 	    });
 
-	    $('.dealer').tooltipster({ content: $('<span>A poor bastard that will sell your stuff on the street. <span>+ 0.5$/s</span> | <span>- 0.1g/s</span></span>') });
-	    $('.trailer').tooltipster({ content: $('<span>An old and shabby trailer with some hippies in it, growing kush and consuming fertilizer. <span>+ 0.5g/s</span> | <span>- 0.1u/s</span></span>') });
-		$('.appartment').tooltipster({ content: $('<span>A place with a THC/air ratio of approximately 1:2 full of dedicated potheads to nourish your plants. <span>+ 80g/s</span> | <span>- 15u/s</span></span>') });
-		$('.greenhouse').tooltipster({ content: $('<span>After paying some bribes to the local police, you can now reign over entire Greenhouses full of plants. <span>+ 2250g/s</span> | <span>- 400u/s</span></span>') });
-		$('.export1').tooltipster({ content: $('<span>You start a weed retail store, with the convenient side effect of hot espresso and fresh cookies. <span>+ 100$/s</span> | <span>- 18g/s</span></span>') });
-		$('.export2').tooltipster({ content: $('<span>Taking weed economy to a new level, this relationship will make you rich, and maybe endanger your life. <span>+ 3400$/s</span> | <span>- 600g/s</span></span>') });
-		$('.fakefarm').tooltipster({ content: $('<span>A local farmer that will now buy fertilizer under his name and give it to you, while of course taking your money. <span>+ 0.5u/s</span> | <span>- 0.3$/s</span></span>') });
-		$('.fakefarm2').tooltipster({ content: $('<span>By blackmailing some officials, you manage to take over a whole facility full of potential fertilizer. Once mixed with money. <span>+ 84g/s</span> | <span>- 40$/s</span></span>') });
-		$('.enchantcursor1').tooltipster({ content: $('<span>By smearing the rare mixture of Dollar bills, Weed and Fertilizer on your gaming mouse, you managed to unlock a secret rapid fire button.</span>') });
+	    $('.dealer').tooltipster({ content: $('<span>A poor bastard that will sell your stuff on the street. <span>+ 0.5$/s</span> | <span>- 0.1g/s</span></span>'), theme: 'tooltipster-light' });
+	    $('.trailer').tooltipster({ content: $('<span>An old and shabby trailer with some hippies in it, growing kush and consuming fertilizer. <span>+ 0.5g/s</span> | <span>- 0.1u/s</span></span>'), theme: 'tooltipster-light' });
+		$('.appartment').tooltipster({ content: $('<span>A place with a THC/air ratio of approximately 1:2 full of dedicated potheads to nourish your plants. <span>+ 80g/s</span> | <span>- 15u/s</span></span>'), theme: 'tooltipster-light' });
+		$('.greenhouse').tooltipster({ content: $('<span>After paying some bribes to the local police, you can now reign over entire Greenhouses full of plants. <span>+ 2250g/s</span> | <span>- 400u/s</span></span>'), theme: 'tooltipster-light' });
+		$('.export1').tooltipster({ content: $('<span>You start a weed retail store, with the convenient side effect of hot espresso and fresh cookies. <span>+ 100$/s</span> | <span>- 18g/s</span></span>'), theme: 'tooltipster-light' });
+		$('.export2').tooltipster({ content: $('<span>Taking weed economy to a new level, this relationship will make you rich, and maybe endanger your life. <span>+ 3400$/s</span> | <span>- 600g/s</span></span>'), theme: 'tooltipster-light' });
+		$('.fakefarm').tooltipster({ content: $('<span>A local farmer that will now buy fertilizer under his name and give it to you, while of course taking your money. <span>+ 0.5u/s</span> | <span>- 0.3$/s</span></span>'), theme: 'tooltipster-light' });
+		$('.fakefarm2').tooltipster({ content: $('<span>By blackmailing some officials, you manage to take over a whole facility full of potential fertilizer. Once mixed with money. <span>+ 84g/s</span> | <span>- 40$/s</span></span>'), theme: 'tooltipster-light' });
+		$('.enchantcursor1').tooltipster({ content: $('<span>By smearing the rare mixture of Dollar bills, Weed and Fertilizer on your gaming mouse, you managed to unlock a secret rapid fire button.</span>'), theme: 'tooltipster-light' });
 	});
 	</script>
 </head>
