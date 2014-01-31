@@ -126,11 +126,26 @@
 	    }
 
 	    if (introstep == 4 ) {
-	    	if (weedflow < 0 && weed == 0) { $('#weed').addClass('alert');}
+	    	if (weedflow < 0 && weed == 0) { 
+	    		var actualTitle = document.title;
+	    		$('#weed').addClass('alert');
+	    		document.title = "You're out of " + weedOrCoffee + "!";
+	    		setTimeout(function(){ document.title = actualTitle },1000);
+	    	}
 			else { $('#weed').removeClass('alert')}
-			if (fertilizerflow < 0 && fertilizer == 0) { $('#fertilizer').addClass('alert');}
+			if (fertilizerflow < 0 && fertilizer == 0) { 
+				$('#fertilizer').addClass('alert');
+				var actualTitle = document.title;
+				document.title = "You're out of fertilizer!";
+	    		setTimeout(function(){ document.title = actualTitle },1000);
+			}
 			else { $('#fertilizer').removeClass('alert')}
-			if (moneyflow < 0 && money == 0) { $('#money').addClass('alert');}
+			if (moneyflow < 0 && money == 0) { 
+				$('#money').addClass('alert');
+				var actualTitle = document.title;
+				document.title = "You're out of money!";
+	    		setTimeout(function(){ document.title = actualTitle },1000);
+			}
 			else { $('#money').removeClass('alert')}
 	    };
 	}
@@ -268,7 +283,7 @@
 	    if ((wps - wes) >= 4) {
 	        $('#weed').addClass('pulsefast');
 	    };
-	    if (wps < wes) {
+	    if (weedflow < 0) {
 	        $('#weedspan').addClass('decline');
 	    };
 
@@ -284,7 +299,7 @@
 	    if ((mps - mes) >= 8) {
 	        $('#money').addClass('pulsefast');
 	    };
-	    if (mps < mes) {
+	    if (moneyflow < 0) {
 	        $('#moneyspan').addClass('decline');
 	    };
 
@@ -299,7 +314,7 @@
 	    if ((fps - fes) >= 2.0) {
 	        $('#fertilizer').addClass('pulsefast');
 	    };
-	    if (fps < fes) {
+	    if (fertilizerflow < 0) {
 	        $('#fertilizerspan').addClass('decline');
 	    };
 
@@ -723,7 +738,7 @@
 <body>
 
 <div class="meny">
-	<p><b class="tooltip" title="JK (c)">KUSHIFY &#945; 2.3.0</b><br><br>
+	<p><b class="tooltip" title="JK (c)">KUSHIFY &#945; 2.4.1</b><br><br>
 
 	   <a class="intro" onclick="saveGame(true)">Export Save</a> 
 	   <a class="intro tooltip" title="Careful! Load up the save you entered." onclick="loadGame()">Import Save</a> 
