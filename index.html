@@ -190,6 +190,10 @@
 
 	function buyFacilityM(i) {
 		if (money > (increasePrice(i, (facilities[i][0] + 1)) - 1)) { //check money
+				if (introstep == 3) {
+					introHandler();
+				}
+
 	            facilities[i][0]++; //add one facility
 	            money = money - increasePrice(i, facilities[i][0]); //distract money
 	            updateFacilities(); // refresh everything
