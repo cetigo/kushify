@@ -89,9 +89,9 @@
 
 
 	//Infrastructure Intervention
-	var dealersFrozen = false;
-	var weedersFrozen = false;
-	var tradersFrozen = false;
+	var moneyflow = 0;
+	var weedflow = 0;
+	var fertilizerflow = 0;
 
 	function clicked(type) {
 	    if (type == 'fertilizer') {
@@ -112,7 +112,7 @@
 	    setInterval(wpsHandler, 100);
 	});
 	$(function () {
-	    setInterval(titleUpdater, 3000);
+	    setInterval(titleUpdater, 2000);
 	});
 	$(function () {
 	    setInterval(saveGame, 60000);
@@ -125,45 +125,93 @@
 	        document.title = addCommas(Math.round(money)) + "$ - kushify";
 	    }
 
-	    // System that paints buttons red when the respective resource is empty, but it conflicts a bit in the early game because of the intro etc. we might fire the loop rehearsing this only after the intro is over
-	    /*if (dealersFrozen == true) { $('#weed').addClass('alert');}
-		else { $('#weed').removeClass('alert')}
-		if (weedersFrozen == true) { $('#fertilizer').addClass('alert');}
-		else { $('#fertilizer').removeClass('alert')}
-		if (tradersFrozen == true) { $('#money').addClass('alert');}
-		else { $('#money').removeClass('alert')}*/
+	    if (introstep == 4 ) {
+	    	if (weedflow < 0 && weed == 0) { $('#weed').addClass('alert');}
+			else { $('#weed').removeClass('alert')}
+			if (fertilizerflow < 0 && fertilizer == 0) { $('#fertilizer').addClass('alert');}
+			else { $('#fertilizer').removeClass('alert')}
+			if (moneyflow < 0 && money == 0) { $('#money').addClass('alert');}
+			else { $('#money').removeClass('alert')}
+	    };
 	}
 
 	function wpsHandler() {
-	    if (weed < 0.5) {
-	        dealersFrozen = true;
-	    } //freeze dealers once no weed is available
-	    else {
-	        dealersFrozen = false;
-	    } //once weed is available, reenable dealerflow
-	    if (money < 0.5) {
-	        tradersFrozen = true;
-	    } else {
-	        tradersFrozen = false;
-	    }
-	    if (fertilizer < 0.5) {
-	        weedersFrozen = true;
-	    } else {
-	        weedersFrozen = false;
-	    }
+	    var weedDebt = 0;
+	    var moneyDebt = 0;
+	    var fertilizerDebt = 0;
 
-	    if (dealersFrozen == false) {
-	        money = money + mps;
-	        weed = weed - wes;
-	    }; //if dealers are running, add money and distract weed
-	    if (weedersFrozen == false) {
-	        fertilizer = fertilizer - fes;
-	        weed = weed + wps;
-	    }; //if weeders are running, add weed and distract fertilizers
-	    if (tradersFrozen == false) {
-	        fertilizer = fertilizer + fps;
-	        money = money - mes;
-	    }; //if traders are running, add fertilizer and distract money
+	    var moneySpent = 0;
+	    var fertilizerSpent = 0;
+	    var weedSpent = 0;
+
+	    var redrawPerSecond = false;
+	    //
+
+	if (weed < wes) {
+		weedSpent = weed;
+		weedDebt = wes - weed;
+		weed = 0;
+		redrawPerSecond = true;
+	}
+
+	else {
+		weedSpent = wes;
+		weed = weed - wes;
+	}
+
+	if (wes > 0) {
+		money = money + ( mps * (weedSpent / wes));
+		moneyflow = ( mps * (weedSpent / wes)) - mes;
+	}
+	//
+
+	if (money < mes) {
+		moneySpent = money;
+		moneyDebt = mes - money;
+		money = 0;
+		redrawPerSecond = true;
+	}
+
+	else {
+		moneySpent = mes;
+		money = money - mes;
+	}
+
+	if (mes > 0) {
+		fertilizer = fertilizer + ( fps * (moneySpent / mes));
+		fertilizerflow = ( fps * (moneySpent / mes)) - fes;
+	}
+	//
+	if (fertilizer < fes) {
+		fertilizerSpent = fertilizer;
+		fertilizerDebt = fes - fertilizer;
+		fertilizer = 0;
+		redrawPerSecond = true;
+	}
+
+	else {
+		fertilizerSpent = fes;
+		fertilizer = fertilizer - fes;
+	}
+
+	if (fes > 0) {
+		weed = weed + ( wps * (fertilizerSpent / fes));
+		weedflow = ( wps * (fertilizerSpent / fes)) - wes;
+	}
+	
+
+	weed = weed - weedDebt;
+	if (weed < 0) { weed = 0 }
+
+	money = money - moneyDebt;
+	if (money < 0) { money = 0 }
+
+	fertilizer = fertilizer - fertilizerDebt;
+	if (fertilizer < 0) { fertilizer = 0 }
+
+		if (redrawPerSecond) {
+			updatePerSecond();
+		};
 
 	    $('#fertilizerspan').text(addCommas(Math.round(fertilizer))); //print
 	    $('#weedspan').text(addCommas(Math.round(weed)));
@@ -209,7 +257,7 @@
 	function checkSpeed() { // check all transfer and gain speeds and apply respective animations to arrow and ps
 	    // all values / 10, because of the 10 times per second update
 
-	    $('#weed, #weedspan').removeClass();
+	    $('#weed, #weedspan').removeClass('pulseslow pulsemed pulsefast decline');
 
 	    if ((wps - wes) > 0 && (wps - wes) <= 1) {
 	        $('#weed').addClass('pulseslow');
@@ -220,12 +268,12 @@
 	    if ((wps - wes) >= 4) {
 	        $('#weed').addClass('pulsefast');
 	    };
-	    if ((wps - wes) < 0) {
+	    if (wps < wes) {
 	        $('#weedspan').addClass('decline');
 	    };
 
 
-	    $('#money, #moneyspan').removeClass();
+	    $('#money, #moneyspan').removeClass('pulseslow pulsemed pulsefast decline');
 
 	    if ((mps - mes) > 0 && (mps - mes) <= 2) {
 	        $('#money').addClass('pulseslow');
@@ -236,11 +284,11 @@
 	    if ((mps - mes) >= 8) {
 	        $('#money').addClass('pulsefast');
 	    };
-	    if ((mps - mes) < 0) {
+	    if (mps < mes) {
 	        $('#moneyspan').addClass('decline');
 	    };
 
-	    $('#fertilizer, #fertilizerspan').removeClass();
+	    $('#fertilizer, #fertilizerspan').removeClass('pulseslow pulsemed pulsefast decline');
 
 	    if ((fps - fes) > 0 && (fps - fes) <= 0.8) {
 	        $('#fertilizer').addClass('pulseslow');
@@ -251,7 +299,7 @@
 	    if ((fps - fes) >= 2.0) {
 	        $('#fertilizer').addClass('pulsefast');
 	    };
-	    if ((fps - fes) < 0) {
+	    if (fps < fes) {
 	        $('#fertilizerspan').addClass('decline');
 	    };
 
@@ -299,9 +347,9 @@
 	}
 
 	function updatePerSecond() {
-	    $('.mps').text(addCommas(Math.round((mps - mes) * 10 * 100) / 100)); //update X/s indicators
-	    $('.fps').text(addCommas(Math.round((fps - fes) * 10 * 100) / 100));
-	    $('.wps').text(addCommas(Math.round((wps - wes) * 10 * 100) / 100));
+	    $('.mps').text(addCommas(Math.round(moneyflow * 10 * 100) / 100)); //update X/s indicators
+	    $('.fps').text(addCommas(Math.round(fertilizerflow * 10 * 100) / 100));
+	    $('.wps').text(addCommas(Math.round(weedflow * 10 * 100) / 100));
 	    $('.wtom').text(addCommas(Math.round(wes * 10 * 100) / 100)); //update arrows
 	    $('.ftow').text(addCommas(Math.round(fes * 10 * 100) / 100));
 	    $('.mtof').text(addCommas(Math.round(mes * 10 * 100) / 100));
@@ -335,7 +383,9 @@
 	    	var printString = facilities[i][0] + facilities[i][6] + addCommas(Math.round(increasePrice(i, (facilities[i][0] + 1)))) + facilities[i][7];
 		    $(facilities[i][2]).text(printString);
 	    };
-
+	    moneyflow = (mps - mes);
+	    weedflow = (wps - wes);
+	    fertilizerflow = (fps - fes);
 	    cursorPower = 1 + (1.5 * facilities[4][0]);
 	    updatePerSecond();
 	}
@@ -365,10 +415,10 @@
 	        $('#skipintro').fadeOut();
 	        $('#introtext').text('You like money.');
 	        setTimeout(function () {
-	            $('#introtext').text('Who the fuck doesnt?')
+	            $('#introtext').text('Who the hell doesnt?')
 	        }, 3000);
 	        setTimeout(function () {
-	            $('#introtext').text('Good.')
+	            $('#introtext').text('Alright.')
 	        }, 5000);
 	        setTimeout(function () {
 	            $('#intro').addClass('side')
@@ -380,13 +430,13 @@
 	            $('#introtext').text('Now this is ' + weedOrCoffee + '.')
 	        }, 7000);
 	        setTimeout(function () {
-	            $('#introtext').text('You may like ' + weedOrCoffee + '.')
+	            $('#introtext').text('Maybe you like ' + weedOrCoffee + '.')
 	        }, 9000);
 	        setTimeout(function () {
-	            $('#introtext').text('Or you may not, but you can sell that shit.')
+	            $('#introtext').text('But what counts is, you can sell it.')
 	        }, 11000);
 	        setTimeout(function () {
-	            $('#introtext').text('But thats annoying and fucking dangerous.')
+	            $('#introtext').text('However, thats really annoying and dangerous.')
 	        }, 13000);
 	        setTimeout(function () {
 	            $('#introtext').text('So hire some idiot to do it for you!')
@@ -414,6 +464,7 @@
 	    $('#intro').remove().fadeOut();
 	    $('.intro').fadeIn().removeClass('intro');
 	    $('#title').addClass('sizedown');
+	    introstep = 4;
 	}
 
 	function addCommas(nStr) {
@@ -505,7 +556,7 @@
 	        facilities[i][0] = Number(saveArray[(i + 3)]);
 	    }
 
-	    if (saveArray[(facilities.length + 4)] == 'true') {
+	    if (saveArray[(facilities.length + 3)] == 'true') {
 	        coffeefy();
 	        $('#switch').prop('checked', false);
 	    } else {
@@ -664,6 +715,9 @@
 		$('.oceanfilter').tooltipster({ content: $('<span>Collecting the biomaterial of the oceans, you establish a constantly high flow of high-quality fertilizer. <span>+ ' + addCommas(facilities[26][4] * 10) + 'u/s</span> | <span>- ' + addCommas(facilities[26][3] * 10) + '$/s</span></span>'), theme: 'tooltipster-light' });
 		$('.alphacondenser').tooltipster({ content: $('<span>Kushify inc.s research department developes a method to condense the radioactive alpha rays emitted by the sun into material that is "pretty much the same thing". <span>+ ' + addCommas(facilities[27][4] * 10) + 'u/s</span> | <span>- ' + addCommas(facilities[27][3] * 10) + '$/s</span></span>'), theme: 'tooltipster-light' });
 	});
+
+
+		
 	</script>
 </head>
 <body>
