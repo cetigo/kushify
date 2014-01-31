@@ -309,17 +309,26 @@
 	}
 
 	function updateFacilities() {
+		mes = 0;
+		mps = 0;
+		wes = 0;
+		wps = 0;
+		fes = 0;
+		fps = 0;
 		//calculate the new expenses and gains from the facilities, print all shop labels
 	    for (var i = 0; i < facilities.length; i++) {
 	    	if (facilities[i][5] == 1) {
+	    		//alert('Type 1 - ' + facilities[i][5]);
 	    		wes = wes + (facilities[i][0] * facilities[i][3]);
 	    		mps = mps + (facilities[i][0] * facilities[i][4]);
 	    	}
-	    	if (facilities[i][5] == 2) {
+	    	else if (facilities[i][5] == 2) {
+	    		//alert('Type 2 - ' + facilities[i][5]);
 	    		mes = mes + (facilities[i][0] * facilities[i][3]);
 	    		fps = fps + (facilities[i][0] * facilities[i][4]);
 	    	}
-	    	if (facilities[i][5] == 3) {
+	    	else if (facilities[i][5] == 3) {
+	    		//alert('Type 3 - ' + facilities[i][5]);
 	    		fes = fes + (facilities[i][0] * facilities[i][3]);
 	    		wps = wps + (facilities[i][0] * facilities[i][4]);
 	    	}
@@ -492,6 +501,7 @@
 
 
 	    for (var i = 0; i < facilities.length; i++) { //define the new amounts of every facility
+	    	//alert(facilities[i][0] + ' - ' + Number(saveArray[(i + 3)]));
 	        facilities[i][0] = Number(saveArray[(i + 3)]);
 	    }
 
