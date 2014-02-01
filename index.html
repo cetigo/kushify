@@ -625,9 +625,9 @@
 	function coffeefy(classic) {
 	    if (classic === true) {
 	        coffeeMod = false;
-	        $("#weed").css("background", "url(weed.jpg) top center").css("background-position-y", "-5px");
-	        $("#containerwtom").css("background", "url('weedbg.jpg')");
-	        $(".wtom").css("background", "url(weedarrow.jpg) repeat");
+	        $("#weed, .wtom, #containerwtom").removeClass('coffeemod');//.css("background", "url(weed.jpg) top center").css("background-position-y", "-5px");
+	        //$("#containerwtom").css("background", "url('weedbg.jpg')");
+	        //$(".wtom").css("background", "url(weedarrow.jpg) repeat");
 	        $('#title').text('KUSHIFY');
 	        weedOrCoffee = 'weed';
 	        $('.kushify').fadeOut("400", function () {
@@ -636,9 +636,9 @@
 	        return;
 	    };
 	    coffeeMod = true;
-	    $("#weed").css("background", "url(coffee.jpg) top center").css("background-position-y", "-5px");
-	    $("#containerwtom").css("background", "url('coffeebg.jpg')");
-	    $(".wtom").css("background", "url(coffeearrow.jpg) repeat");
+	    $("#weed, .wtom, #containerwtom").addClass('coffeemod');//css("background", "url(coffee.jpg) top center").css("background-position-y", "-5px");
+	    //$("#containerwtom").css("background", "url('coffeebg.jpg')");
+	    //$(".wtom").css("background", "url(coffeearrow.jpg) repeat");
 	    $('#title').text('COFFEFY');
 	    weedOrCoffee = 'coffee';
 	    $('.coffeefy').fadeOut("400", function () {

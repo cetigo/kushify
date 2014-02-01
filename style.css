@@ -736,6 +736,56 @@ body {
 
 *.intro { display: none; }
 
+#weed.coffeemod {
+    background: url('Coffee.jpg');
+    background-size: 260px 260px;
+    background-position: -5px -5px; 
+}
+
+.wtom.coffeemod {
+	background: url('coffeearrow.jpg') repeat;
+}
+
+#containerwtom.coffeemod {
+	background: url('coffeebg.jpg');
+}
+
+
+
+@media only screen and (-moz-min-device-pixel-ratio: 1.5), only screen and (-o-min-device-pixel-ratio: 3/2), only screen and (-webkit-min-device-pixel-ratio: 1.5), only screen and (min-devicepixel-ratio: 1.5), only screen and (min-resolution: 1.5dppx) {
+    #weed.coffeemod {
+    	background: url('CoffeeRetina.jpg');
+    	background-size: 260px 260px;
+    	background-position: -5px -5px; 
+    }
+
+    .arrow.wtom.coffeemod {
+		background: url('coffeearrowRetina.jpg') repeat;
+		background-size: 200px 30px;
+	}
+
+	#containerwtom.coffeemod {
+		background: url('coffeebgRetina.jpg');
+		background-size: 390px 150px
+	}
+
+	#money {
+		background: url('moneyRetina.jpg');
+		background-size: 260px 260px;
+		background-position: -5px -5px;
+	}
+
+	.arrow.mtof {
+		background: url('moneyarrowRetina.jpg') repeat;
+		background-size: 200px 30px;
+	}
+
+	#containermtof {
+		background: url('moneybgRetina.jpg');
+		background-size: 390px 150px;
+	}
+}
+
 @media (max-width: 1750px) {
 	#intro.side {
 		margin-left: -600px;
