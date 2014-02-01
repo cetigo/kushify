@@ -117,11 +117,11 @@ body {
 	-ms-user-select: none;
 	user-select: none;
 
-	-webkit-transition: background 0.2s, height 0.4s;
-	-moz-transition: background 0.2s, height 0.4s;
-	-ms-transition: background 0.2s, height 0.4s;
-	-o-transition: background 0.2s, height 0.4s;
-	transition: background 0.2s, height 0.4s;
+	-webkit-transition: all 0.4s;
+	-moz-transition: all 0.4s;
+	-ms-transition: all 0.4s;
+	-o-transition: all 0.4s;
+	transition: all 0.4s;
 }
 
 #containerwtom {
@@ -163,13 +163,23 @@ body {
 	transition: all 0.4s;
 }
 
-#containerwtom.expanded #list, #containermtof.expanded #list, #containerftow.expanded #list {
+#containerwtom.expanded #list, #containerftow.expanded #list {
 	margin: 30px 0 0 0;
 	height: 380px;
 }
+ #containermtof.expanded #list {
+ 	margin: 0 0 30px 0;
+ 	height: 330px;
+ }
 
-#containerwtom.expanded, #containermtof.expanded, #containerftow.expanded {
+#containerwtom.expanded, #containerftow.expanded {
 	background-position: 0 -120px;
+	top: 85px;
+}
+
+#containermtof.expanded {
+	margin-top: 400px;
+	background-position: 0 340px;
 }
 
 #list span {
@@ -765,9 +775,13 @@ body {
 }
 
 #containerwtom.coffeemod {
-	background: url('coffeebg.jpg');
+	background: url('coffeebg.jpg') no-repeat;
+	background-color: #222;
 }
 
+#containerwtom.coffeemod.expanded {
+	background-position: 0 -120px;
+}
 
 
 @media only screen and (-moz-min-device-pixel-ratio: 1.5), only screen and (-o-min-device-pixel-ratio: 3/2), only screen and (-webkit-min-device-pixel-ratio: 1.5), only screen and (min-devicepixel-ratio: 1.5), only screen and (min-resolution: 1.5dppx) {
@@ -783,8 +797,13 @@ body {
 	}
 
 	#containerwtom.coffeemod {
-		background: url('coffeebgRetina.jpg');
+		background: url('coffeebgRetina.jpg') no-repeat;
+		background-color: #222;
 		background-size: 390px 150px
+	}
+
+	#containerwtom.coffeemod.expanded {
+		background-position: 0 -240px;
 	}
 
 	#money {

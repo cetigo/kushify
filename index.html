@@ -29,6 +29,7 @@
 	var particlesDeactivated = false;
 	var menuflipDeactivated = false;
 	var softAnimations = false;
+	var expandAnimations = true;
 
 	 //Resources and Resourceflow
 	var money = 0; //Resource
@@ -694,11 +695,30 @@
 	        }
 	    });
 
+	    $("#switch4").change(function () {
+	        if ($('#switch4').prop('checked')) {
+	            expandAnimations = true;
+	        } else {
+	            expandAnimations = false;
+	        }
+	    });
+
 	    // print all labels
 	    for (var i = 0; i < facilities.length; i++) {
 	    	var printString = facilities[i][0] + facilities[i][6] + addCommas(Math.round(increasePrice(i, (facilities[i][0] + 1)))) + facilities[i][7];
 		    $(facilities[i][2]).text(printString);
 	    }
+
+		$('#containerwtom, #containerftow, #containermtof').hover(function() {
+		  $.data(this, "timer", setTimeout($.proxy(function() {
+		    if (expandAnimations == true) {
+	    		$(this).addClass('expanded');
+	    	}
+		  }, this), 900));
+		}, function() {
+		  clearTimeout($.data(this, "timer"));
+		  $(this).removeClass('expanded');
+		});
 
 	    $('.dealer').tooltipster({ content: $('<span>A poor bastard that will sell your stuff on the street. <span>+ ' + (facilities[0][4] * 10) + '$/s</span> | <span>- ' + (facilities[0][3] * 10) + 'g/s</span></span>'), theme: 'tooltipster-light' });
 	    $('.trailer').tooltipster({ content: $('<span>An old and shabby trailer with some hippies in it, growing kush and consuming fertilizer. <span>+ ' + addCommas(facilities[1][4] * 10) + 'g/s</span> | <span>- ' + addCommas(facilities[1][3] * 10) + 'u/s</span></span>'), theme: 'tooltipster-light' });
@@ -761,6 +781,12 @@
 	   	<input id="switch3" type="checkbox" class="input-switch" checked="checked"/>
 	   	<label for="switch3"></label><span class="switch-bg"></span>
 	   	<span data-on="Bouncy" data-off="Static" class="switch-labels"></span>
+	   </span>
+
+	   <span class="kushify-switch tooltip" title="Expand after 1 second">
+	   	<input id="switch4" type="checkbox" class="input-switch" checked="checked"/>
+	   	<label for="switch4"></label><span class="switch-bg"></span>
+	   	<span data-on="Unfold" data-off="Don't" class="switch-labels"></span>
 	   </span>
 
 	   <a onclick="cheatNow()" class="tooltip" title="You don't really want to do this.">Enter Cheat</a> 
