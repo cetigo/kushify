@@ -515,7 +515,7 @@
 	}
 
 	function saveGame(useTextfield) {
-	    var saveRaw = Math.round(money) + "%" + Math.round(weed) + "%" + Math.round(fertilizer) + "%" + facilities[0][0] + "%" + facilities[1][0] + "%" + facilities[2][0] + "%" + facilities[3][0] + "%" + facilities[4][0] + "%" + facilities[5][0] + "%" + facilities[6][0] + "%" + facilities[7][0] + "%" + facilities[8][0] + "%" + facilities[9][0] + "%" + facilities[10][0] + "%" + facilities[11][0] + "%" + facilities[12][0] + "%" + facilities[13][0] + "%" + facilities[14][0] + "%" + facilities[15][0] + "%" + facilities[16][0] + "%" + facilities[17][0] + "%" + facilities[18][0] + "%" + facilities[19][0] + "%" + facilities[20][0] + "%" + facilities[21][0] + "%" + facilities[22][0] + "%" + facilities[23][0] + "%" + facilities[24][0] + "%" + facilities[25][0] + "%" + facilities[26][0] + "%" + facilities[27][0] + "%" + coffeeMod;
+	    var saveRaw = Math.round(money) + "%" + Math.round(weed) + "%" + Math.round(fertilizer) + "%" + facilities[0][0] + "%" + facilities[1][0] + "%" + facilities[2][0] + "%" + facilities[3][0] + "%" + facilities[4][0] + "%" + facilities[5][0] + "%" + facilities[6][0] + "%" + facilities[7][0] + "%" + facilities[8][0] + "%" + facilities[9][0] + "%" + facilities[10][0] + "%" + facilities[11][0] + "%" + facilities[12][0] + "%" + facilities[13][0] + "%" + facilities[14][0] + "%" + facilities[15][0] + "%" + facilities[16][0] + "%" + facilities[17][0] + "%" + facilities[18][0] + "%" + facilities[19][0] + "%" + facilities[20][0] + "%" + facilities[21][0] + "%" + facilities[22][0] + "%" + facilities[23][0] + "%" + facilities[24][0] + "%" + facilities[25][0] + "%" + facilities[26][0] + "%" + facilities[27][0] + "%" + coffeeMod + "%" + particlesDeactivated + "%" + softAnimations + "%" + expandAnimations;
 	    saveCrypt = encode64(saveRaw);
 	    if (useTextfield === true) {
 	        $('#saveForm').val(saveCrypt);
@@ -548,11 +548,12 @@
 	    var saveArray = saveState.split("%"); //Split on all %
 	    //alert(saveArray.length); (Debug)
 
-	    for (var i = 0; i < (facilities.length + 3); i++) { //check if any of the values from 0 - 11 is NaN
+	    for (var i = 0; i < (facilities.length + 3); i++) { //check if any of the values from 0 - end of facilities is NaN
 	        var numberResult = Number(saveArray[i]);
 	        //alert("Run " + i + " - " + saveArray[i] + " - " + numberResult); (Debug)
 	        if (isNaN(numberResult)) {
-	            alert('Your save is obsolote, a new game starts now!');
+
+	            alert(numberResult + ' - Your save is obsolote or corrupt, starting a new game!');
 	            return;
 	        }
 	    }
@@ -578,6 +579,30 @@
 	    } else {
 	        coffeefy(true);
 	        $('#switch').prop('checked', true);
+	    }
+
+	    if (saveArray[(facilities.length + 4)] == 'true') {
+	        particlesDeactivated = true;
+	        $('#switch2').prop('checked', false);
+	    } else {
+	        particlesDeactivated = false;
+	        $('#switch2').prop('checked', true);
+	    }
+
+	    if (saveArray[(facilities.length + 5)] == 'true') {
+	        softAnimations = true;
+	        $('#switch3').prop('checked', false);
+	    } else {
+	        softAnimations = false;
+	        $('#switch3').prop('checked', true);
+	    }
+
+	    if (saveArray[(facilities.length + 6)] == 'true') {
+	        $('#switch4').prop('checked', true);
+	        expandAnimations = true;
+	    } else {
+	        $('#switch4').prop('checked', false);
+	        expandAnimations = false;
 	    }
 
 	    wes = 0;
