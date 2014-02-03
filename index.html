@@ -673,7 +673,6 @@
 
 	}
 
-
 	$(document).ready(function () {
 		$('.tooltip').tooltipster({
 		   animation: 'fall',
@@ -774,6 +773,13 @@
 		$('.tradebonds1').tooltipster({ content: $('<span>You realise that the leadership of pretty much any country below the equator is happy to sell you their "fertilizer". <span>+ ' + addCommas(facilities[25][4] * 10) + 'u/s</span> | <span>- ' + addCommas(facilities[25][3] * 10) + '$/s</span></span>'), theme: 'tooltipster-light', speed: 250 });
 		$('.oceanfilter').tooltipster({ content: $('<span>Collecting the biomaterial of the oceans, you establish a constantly high flow of high-quality fertilizer. <span>+ ' + addCommas(facilities[26][4] * 10) + 'u/s</span> | <span>- ' + addCommas(facilities[26][3] * 10) + '$/s</span></span>'), theme: 'tooltipster-light', speed: 250 });
 		$('.alphacondenser').tooltipster({ content: $('<span>Kushify inc.s research department developes a method to condense the radioactive alpha rays emitted by the sun into material that is "pretty much the same thing". <span>+ ' + addCommas(facilities[27][4] * 10) + 'u/s</span> | <span>- ' + addCommas(facilities[27][3] * 10) + '$/s</span></span>'), theme: 'tooltipster-light', speed: 250 });
+
+		jQuery(window).bind('beforeunload', function(){
+			if (introstep == 4) {
+				return 'Unsaved Progress will be lost!';
+			}
+		});
+
 	});
 
 
@@ -783,7 +789,7 @@
 <body>
 
 <div class="meny">
-	<p><b class="tooltip" title="JK (c)">KUSHIFY &#945; 2.5.1</b><br><br>
+	<p><b class="tooltip" title="JK (c)">KUSHIFY &#945; 2.6.0</b><br><br>
 
 	   <a class="intro" onclick="saveGame(true)">Export Save</a> 
 	   <a class="intro tooltip" title="Careful! Load up the save you entered." onclick="loadGame()">Import Save</a> 
@@ -815,7 +821,7 @@
 	   </span>
 
 	   <a onclick="cheatNow()" class="tooltip" title="You don't really want to do this.">Enter Cheat</a> 
-	   <a class="intro tooltip dev" onclick="clearCookie()" title="Delete the Savegame you had. Refresh then to start a new game!">Clear Save</a>
+	   <a class="intro tooltip dev" onclick="clearCookie()" title="Delete the current Savegame. Refresh the page to start from scratch!">Reset Save</a>
 	   
 	   <br>
 	   <textarea spellcheck="false" name="Text1" onclick="this.focus();this.select()" cols="55" rows="2" class="intro" id="saveForm"></textarea>

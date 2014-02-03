@@ -4,9 +4,8 @@ body {
 	background-color: #222;
     background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAAECAYAAACp8Z5+AAAAGklEQVQIW2NkYGD4D8SMQAwGcAY2AbBKDBUAVuYCBQPd34sAAAAASUVORK5CYII=);
     background-repeat: repeat;
-    overflow-x: hidden;
+    overflow: hidden;
     position: relative;
-    width: 100%;
 }
 
 .meny {
@@ -144,7 +143,7 @@ body {
 	background: url('moneybg.jpg') no-repeat;
 	background-color: #222;
 	position: relative;
-	margin: 610px auto 15px;
+	margin: 610px auto 0;
 }
 
 #list {
