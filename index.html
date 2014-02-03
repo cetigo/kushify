@@ -788,9 +788,19 @@
 	</script>
 </head>
 <body>
+<div id="fb-root"></div>
+<script>
+	(function(d, s, id) {
+	  var js, fjs = d.getElementsByTagName(s)[0];
+	  if (d.getElementById(id)) return;
+	  js = d.createElement(s); js.id = id;
+	  js.src = "//connect.facebook.net/de_DE/all.js#xfbml=1";
+	  fjs.parentNode.insertBefore(js, fjs);
+	}(document, 'script', 'facebook-jssdk'));
+</script>
 
 <div class="meny">
-	<p><b class="tooltip" title="JK (c)">KUSHIFY &#945; 2.6.1</b><br><br>
+	<p><b class="tooltip" title="JK (c)">KUSHIFY &#945; 2.6.1</b> <div class="fb-like" data-href="http://cetigo.github.io/kushify/" data-width="400" data-layout="standard" data-action="like" data-show-faces="true" data-share="true"></div><br><br>
 
 	   <a class="intro" onclick="saveGame(true)">Export Save</a> 
 	   <a class="intro tooltip" title="Careful! Load up the save you entered." onclick="loadGame()">Import Save</a> 
