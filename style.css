@@ -182,10 +182,12 @@ body {
 }
 
 #list span {
-	font-family: "Chau Philomene One";
+	font-family: "Open Sans Condensed";
+	text-shadow: 0 2px 2px black;
 	color: rgba(240,240,240,1);
+	background-color: rgba(25,25,25,0.3);
 	font-size: 18px;
-	font-weight: 400;
+	font-weight: 500;
 	cursor: pointer;
 	text-align: justify;
 	display: block;
@@ -309,8 +311,9 @@ body {
 	width: 260px;
 	margin-left: -130px;
 	top: 45px;
-	font-family: "Chau Philomene One";
-	color: #F3F0D1;
+	font-family: "Open Sans Condensed";
+	font-weight: 700;
+	color: #F3F3F3;
 	font-size: 20px;
 	z-index: 1;
 	cursor: pointer;
@@ -370,7 +373,8 @@ body {
 /* BASIC ARROW */
 .arrow {
 	position: absolute;
-	font-family: "Chau Philomene One";
+	font-family: "Open Sans Condensed";
+	font-weight: 700;
 	width: 200px;
 	height: 30px;
 	background-color: #666;
@@ -381,9 +385,9 @@ body {
 	-moz-box-shadow: 0 2px 2px #222;
 	box-shadow: 0 2px 2px #222;
 	text-align: center;
-	font-size: 16px;
+	font-size: 18px;
 	line-height: 30px;
-	text-shadow: 0px 2px 2px rgba(0,0,0,0.9);
+	text-shadow: 0 2px 2px black;
 
 	-webkit-touch-callout: none;
 	-webkit-user-select: none;
@@ -530,7 +534,8 @@ body {
 	margin: 0 auto;
 	font-size: 150px;
 	text-align: center;
-	font-family: "Chau Philomene One";
+	font-family: "Ceviche One";
+	font-weight: 300;
 	color: #F3F0D1;
 	cursor: default;
 
@@ -546,10 +551,15 @@ body {
     -webkit-transition: all 0.5s ease;
     transition: all 0.5s ease;
 
-	text-shadow: 0px 3px 0px #b2a98f,
+	text-shadow:
+			 0px 3px 0px #b2a98f,
              0px 4px 3px rgba(0,0,0,0.4),
              0px 8px 13px rgba(0,0,0,0.1),
              0px 18px 23px rgba(0,0,0,0.1);
+
+    -webkit-text-stroke: 1px #668E40;
+    font-smooth:always;
+	-webkit-font-smoothing: antialiased;
 }
 
 #title.sizedown {
@@ -572,12 +582,13 @@ body {
 	width: 700px;
 	margin-left: -350px;
 	text-align: center;
-	font-family: "Chau Philomene One";
-	color: #F3F0D1;
+	font-family: "Open Sans Condensed";
+	font-weight: 300;
+	color: #F3F3F3;
 	font-size: 46px;
-	text-shadow: 0px 4px 3px rgba(0,0,0,0.4),
+	/*text-shadow: 0px 4px 3px rgba(0,0,0,0.4),
              0px 8px 13px rgba(0,0,0,0.1),
-             0px 18px 23px rgba(0,0,0,0.1);
+             0px 18px 23px rgba(0,0,0,0.1);*/
     -moz-transition: all 0.5s ease;
     -o-transition: all 0.5s ease;
     -webkit-transition: all 0.5s ease;
@@ -590,8 +601,9 @@ body {
 
 #intro #introbutton {
 	cursor: pointer;
-	font-family: "Chau Philomene One";
-	color: #F3F0D1;
+	font-family: "Open Sans Condensed";
+	font-weight: 300;
+	color: #F3F3F3;
 	font-size: 62px;
 	padding: 20px 90px 20px;
 	background-color: rgba(255,255,255,0.6);
@@ -607,7 +619,7 @@ body {
 }
 
 #intro #introbutton:hover {
-	color: #ffe;
+	color: #333;
 	background-color: rgba(255,255,255,0.7);
 }
 
@@ -721,15 +733,15 @@ body {
 
 /* TOOLTIPSTER */
 .tooltipster-content span {
-	font-family: "Helvetica", Arial, sans-serif;
-	font-size: 12px;
+	font-family: "Open Sans Condensed", Arial, sans-serif;
+	font-size: 16px;
 	line-height: 14px;
 	/*color: #eee;*/
-	font-style: italic;
 }
 
 .tooltipster-content span span:first-child {
 	font-size: 14px;
+	font-family: "Open Sans Condensed", Arial, sans-serif;
 	font-weight: 700;
 	color: #77DE47;
 	font-style: normal;
@@ -740,6 +752,7 @@ body {
 
 .tooltipster-content span span:last-child {
 	font-size: 14px;
+	font-family: "Open Sans Condensed", Arial, sans-serif;
 	font-weight: 700;
 	color: #DE080A;
 	/*color: #FF3338;*/
@@ -755,7 +768,7 @@ body {
 	color: #666666;
 }
 .tooltipster-light .tooltipster-content {
-	font-family: Arial, sans-serif;
+	font-family: "Open Sans Condensed", Arial, sans-serif;
 	font-size: 14px;
 	line-height: 16px;
 	padding: 8px 10px;
