@@ -775,7 +775,8 @@
 		$('.alphacondenser').tooltipster({ content: $('<span>Kushify inc.s research department developes a method to condense the radioactive alpha rays emitted by the sun into material that is "pretty much the same thing". <span>+ ' + addCommas(facilities[27][4] * 10) + 'u/s</span> | <span>- ' + addCommas(facilities[27][3] * 10) + '$/s</span></span>'), theme: 'tooltipster-light', speed: 250 });
 
 		jQuery(window).bind('beforeunload', function(){
-			if (introstep == 4) {
+			var reg = getCookie("kushify_savegame");
+	    	if (reg != "") {
 				return 'Unsaved Progress will be lost!';
 			}
 		});
@@ -789,7 +790,7 @@
 <body>
 
 <div class="meny">
-	<p><b class="tooltip" title="JK (c)">KUSHIFY &#945; 2.6.0</b><br><br>
+	<p><b class="tooltip" title="JK (c)">KUSHIFY &#945; 2.6.1</b><br><br>
 
 	   <a class="intro" onclick="saveGame(true)">Export Save</a> 
 	   <a class="intro tooltip" title="Careful! Load up the save you entered." onclick="loadGame()">Import Save</a> 
