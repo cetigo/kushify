@@ -480,11 +480,11 @@ body {
 /* PULSE ANIMATION */
 @-webkit-keyframes pulse {
     0% {
-    	-moz-transform: scale(0.99);
-    	-ms-transform: scale(0.99);
-    	-o-transform: scale(0.99);
-    	-webkit-transform: scale(0.99);
-    	transform: scale(0.99);
+    	-moz-transform: scale(0.98);
+    	-ms-transform: scale(0.98);
+    	-o-transform: scale(0.98);
+    	-webkit-transform: scale(0.98);
+    	transform: scale(0.98);
     } 
     100% {
     	-moz-transform: scale(1.02);
@@ -496,11 +496,11 @@ body {
 }
 @-moz-keyframes pulse {
     0% {
-    	-moz-transform: scale(0.99);
-    	-ms-transform: scale(0.99);
-    	-o-transform: scale(0.99);
-    	-webkit-transform: scale(0.99);
-    	transform: scale(0.99);
+    	-moz-transform: scale(0.98);
+    	-ms-transform: scale(0.98);
+    	-o-transform: scale(0.98);
+    	-webkit-transform: scale(0.98);
+    	transform: scale(0.98);
     } 
     100% {
     	-moz-transform: scale(1.02);
@@ -512,18 +512,18 @@ body {
 }
 @keyframes pulse {
     0% {
-    	-moz-transform: scale(0.95);
-    	-ms-transform: scale(0.95);
-    	-o-transform: scale(0.95);
-    	-webkit-transform: scale(0.95);
-    	transform: scale(0.95);
+    	-moz-transform: scale(0.98);
+    	-ms-transform: scale(0.98);
+    	-o-transform: scale(0.98);
+    	-webkit-transform: scale(0.98);
+    	transform: scale(0.98);
     } 
     100% {
-    	-moz-transform: scale(1.05);
-    	-ms-transform: scale(1.05);
-    	-o-transform: scale(1.05);
-    	-webkit-transform: scale(1.05);
-    	transform: scale(1.05)
+    	-moz-transform: scale(1.02);
+    	-ms-transform: scale(1.02);
+    	-o-transform: scale(1.02);
+    	-webkit-transform: scale(1.02);
+    	transform: scale(1.02)
     }
 }
 
