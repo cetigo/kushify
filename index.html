@@ -31,6 +31,8 @@
 	var softAnimations = false;
 	var expandAnimations = true;
 
+	var currentVersion = '2.7.0';
+
 	 //Resources and Resourceflow
 	var money = 0; //Resource
 	var mps = 0; //Income per Second | it's actually income / expense per 1/10th second. So 1 amps = 0.1 mps
@@ -57,36 +59,36 @@
 	//type: 1 - W to M; 2 - M to F; 3 - F to W 
 	facilities[0] = new Array(0, 15, '.dealer', 0.01, 0.05, 1, " Dealer - buy for ", "$"); //Dealer
 	facilities[1] = new Array(0, 30, '.trailer', 0.01, 0.05, 3, " Trailer - buy for ", "$"); //Trailer
-	facilities[2] = new Array(0, 5000, '.appartment', 1.5, 8, 3, " Hippie Appartments - buy for ", "$"); //Appartment
-	facilities[3] = new Array(0, 3000, '.export1', 1.8, 10, 1, " Coffee Shops - buy for ", "$"); //Export1
+	facilities[2] = new Array(0, 500, '.appartment', 0.3, 1, 3, " Hippie Appartments - buy for ", "$"); //Appartment
+	facilities[3] = new Array(0, 300, '.export1', 0.2, 1, 1, " Coffee Shops - buy for ", "$"); //Export1
 	facilities[4] = new Array(0, 2500, '.enchantcursor1', 0, 0, 0, " Cursor Enchantments - buy for ", "g, $ and u"); //Echantcursor1
 	
 	
-	 facilities[7] = new Array(0, 100000, '.export2', 60, 340, 1, " Mafia Contracts - buy for ", "$"); //export2
-	 facilities[8] = new Array(0, 140000, '.greenhouse', 40, 225, 3, " Greenhouses - buy for ", "$"); //greenhouse
-	 facilities[9] = new Array(0, 50000000, '.onlineshop', 300, 1800, 1, " Online Shops - buy for ", "$");
-	facilities[10] = new Array(0, 1200000000, '.franchise', 720, 4320, 1, " Franchise Licensings - buy for ", "$");
-	facilities[11] = new Array(0, 50000000000, '.marketing', 3000, 17800, 1, " Marketing Campaigns - buy for ", "$");
-	facilities[12] = new Array(0, 300000000000, '.vendingmachines', 18000, 106800, 1, " Vending Machine Clusters - buy for ", "$");
-	facilities[13] = new Array(0, 1200000000000, '.legalization1', 72000, 427200, 1, " Legalizations - buy for ", "$");
-	facilities[14] = new Array(0, 10800000000000, '.conduit', 648000, 3844800, 1, " Conduit Ratio Taxes - buy for ", "$");
+	 facilities[7] = new Array(0, 2000, '.export2', 1, 8, 1, " Mafia Contracts - buy for ", "$"); //export2
+	 facilities[8] = new Array(0, 3000, '.greenhouse', 1, 10, 3, " Greenhouses - buy for ", "$"); //greenhouse
+	 facilities[9] = new Array(0, 8000, '.onlineshop', 3, 24, 1, " Online Shops - buy for ", "$");
+	facilities[10] = new Array(0, 32000, '.franchise', 12, 96, 1, " Franchise Licensings - buy for ", "$");
+	facilities[11] = new Array(0, 160000, '.marketing', 60, 500, 1, " Marketing Campaigns - buy for ", "$");
+	facilities[12] = new Array(0, 1280000, '.vendingmachines', 480, 4000, 1, " Vending Machine Clusters - buy for ", "$");
+	facilities[13] = new Array(0, 96000000, '.legalization1', 36000, 300000, 1, " Legalizations - buy for ", "$");
+	facilities[14] = new Array(0, 3072000000, '.conduit', 1260000, 10500000, 1, " Conduit Ratio Taxes - buy for ", "$");
 
-	facilities[15] = new Array(0, 800000, '.drill', 240, 1350, 3, " Drill Extractors - buy for ", "$");
-	facilities[16] = new Array(0, 20000000, '.synthetic1', 600, 3375, 3, " Synthetic THC Factories - buy for ", "$");
-	facilities[17] = new Array(0, 540000000, '.underwater', 1620, 9120, 3, " Underwater Plantages - buy for ", "$");
-	facilities[18] = new Array(0, 16200000000, '.island', 4860, 27360, 3, " Islands of weed - buy for ", "$");
-	facilities[19] = new Array(0, 486000000000, '.rainforest', 19440, 109440, 3, " Converted Rainforests - buy for ", "$");
-	facilities[20] = new Array(0, 1458000000000, '.orbital', 58320, 328320, 3, " Orbital Colonies - buy for ", "$");
-	facilities[21] = new Array(0, 72900000000000, '.lunar', 291600, 1641600, 3, " Lunar Hydrochambers - buy for ", "$");
-	facilities[22] = new Array(0, 364500000000000, '.solar', 1458000, 8208000, 3, " Solar Orbit Concentrators - buy for ", "$");
+	facilities[15] = new Array(0, 10000, '.drill', 3, 30, 3, " Drill Extractors - buy for ", "$");
+	facilities[16] = new Array(0, 0, '.synthetic1', 0, 0, 3, " Synthetic THC Factories - buy for ", "$"); // DISABLED for now
+	facilities[17] = new Array(0, 40000, '.underwater', 12, 120, 3, " Underwater Plantages - buy for ", "$");
+	facilities[18] = new Array(0, 0, '.island', 0, 0, 3, " Islands of weed - buy for ", "$"); // DISABLED for now
+	facilities[19] = new Array(0, 200000, '.rainforest', 60, 600, 3, " Converted Rainforests - buy for ", "$");
+	facilities[20] = new Array(0, 1500000, '.orbital', 480, 4800, 3, " Orbital Colonies - buy for ", "$");
+	facilities[21] = new Array(0, 112500000, '.lunar', 36000, 360000, 3, " Lunar Hydrochambers - buy for ", "$");
+	facilities[22] = new Array(0, 3937500000, '.solar', 1260000, 12600000, 3, " Solar Orbit Concentrators - buy for ", "$");
 
 	facilities[23] = new Array(0, 40, '.localshop', 0.03, 0.05, 2, " Blackmailed Shops - buy for ", "$");
-	 facilities[5] = new Array(0, 3500, '.fakefarm', 4, 8.5, 2, " Undercover Farms - buy for ", "$"); //Fakefarm
-	facilities[24] = new Array(0, 280000, '.takeoverfactory', 320, 680, 2, " Hijacked Factories - buy for ", "$");
-	 facilities[6] = new Array(0, 25200000, '.fakefarm2', 2880, 6120, 2, " Nuclear Waste Facilities - buy for ", "$"); //Fakefarm2
-	facilities[25] = new Array(0, 226800000, '.tradebonds1', 25920, 55080, 2, " Trading Bonds - buy for ", "$");
-	facilities[26] = new Array(0, 2041200000, '.oceanfilter', 233280, 1101600, 2, " Ocean Filters - buy for ", "$");
-	facilities[27] = new Array(0, 18370800000, '.alphacondenser', 2099520, 22032000, 2, " Alpha-Ray Condensers - buy for ", "$");
+	 facilities[5] = new Array(0, 350, '.fakefarm', 1, 1, 2, " Undercover Farms - buy for ", "$"); //Fakefarm
+	facilities[24] = new Array(0, 2500, '.takeoverfactory', 5.5, 6, 2, " Hijacked Factories - buy for ", "$");
+	 facilities[6] = new Array(0, 9000, '.fakefarm2', 17, 18, 2, " Nuclear Waste Facilities - buy for ", "$"); //Fakefarm2
+	facilities[25] = new Array(0, 40000, '.tradebonds1', 90, 110, 2, " Trading Bonds - buy for ", "$");
+	facilities[26] = new Array(0, 100000, '.oceanfilter', 2250, 3000, 2, " Ocean Filters - buy for ", "$");
+	facilities[27] = new Array(0, 200000000, '.alphacondenser', 4500000, 6000000, 2, " Alpha-Ray Condensers - buy for ", "$");
 
 
 	//Infrastructure Intervention
@@ -408,7 +410,7 @@
 
 	function increasePrice(facility, number) {
 	    //var Price = facilities[facility][1] * (((Math.sqrt(number) / 2) + (Math.pow((number / 100), 4) / 100)) + 0.5);
-	    var Price = facilities[facility][1] * Math.pow(1.05, (number - 1));
+	    var Price = facilities[facility][1] * Math.pow(1.09, (number - 1));
 	    return Price;
 	}
 
@@ -553,7 +555,7 @@
 	        //alert("Run " + i + " - " + saveArray[i] + " - " + numberResult); (Debug)
 	        if (isNaN(numberResult)) {
 
-	            alert(numberResult + ' - Your save is obsolote or corrupt, starting a new game!');
+	            alert('Your save is corrupt or old, starting a new game!');
 	            return;
 	        }
 	    }
@@ -651,9 +653,7 @@
 	function coffeefy(classic) {
 	    if (classic === true) {
 	        coffeeMod = false;
-	        $("#weed, .wtom, #containerwtom").removeClass('coffeemod');//.css("background", "url(weed.jpg) top center").css("background-position-y", "-5px");
-	        //$("#containerwtom").css("background", "url('weedbg.jpg')");
-	        //$(".wtom").css("background", "url(weedarrow.jpg) repeat");
+	        $("#weed, .wtom, #containerwtom").removeClass('coffeemod');
 	        $('#title').text('KUSHIFY');
 	        weedOrCoffee = 'weed';
 	        $('.kushify').fadeOut("400", function () {
@@ -662,9 +662,7 @@
 	        return;
 	    };
 	    coffeeMod = true;
-	    $("#weed, .wtom, #containerwtom").addClass('coffeemod');//css("background", "url(coffee.jpg) top center").css("background-position-y", "-5px");
-	    //$("#containerwtom").css("background", "url('coffeebg.jpg')");
-	    //$(".wtom").css("background", "url(coffeearrow.jpg) repeat");
+	    $("#weed, .wtom, #containerwtom").addClass('coffeemod');
 	    $('#title').text('COFFEEFY');
 	    weedOrCoffee = 'coffee';
 	    $('.coffeefy').fadeOut("400", function () {
@@ -749,7 +747,7 @@
 		$('.appartment').tooltipster({ content: $('<span>A place with a THC/air ratio of approximately 1:2 full of dedicated potheads to nourish your plants. <span>+ ' + addCommas(facilities[2][4] * 10) + 'g/s</span> | <span>- ' + addCommas(facilities[2][3] * 10) + 'u/s</span></span>'), theme: 'tooltipster-light', speed: 250 });
 		$('.greenhouse').tooltipster({ content: $('<span>After paying some bribes to the local police, you can now reign over entire Greenhouses full of plants. <span>+ ' + addCommas(facilities[8][4] * 10) + 'g/s</span> | <span>- ' + addCommas(facilities[8][3] * 10) + 'u/s</span></span>'), theme: 'tooltipster-light', speed: 250 });
 		$('.export1').tooltipster({ content: $('<span>You start a weed retail store, with the convenient side effect of hot espresso and fresh cookies. <span>+ ' + (facilities[3][4] * 10) + '$/s</span> | <span>- ' + (facilities[3][3] * 10) + 'g/s</span></span>'), theme: 'tooltipster-light', speed: 250 });
-		$('.export2').tooltipster({ content: $('<span>Taking weed economy to a new level, this relationship will make you rich, and maybe endanger your life. <span>+ ' + addCommas(facilities[7][4] * 10) + '$/s</span> | <span>- ' + addCommas(facilities[7][3] * 10) + 'g/s</span></span>'), theme: 'tooltipster-light', speed: 250 });
+		$('.export2').tooltipster({ content: $('<span>Taking weed economy to a new level, this relationship will make you rich, and possibly endanger your life. <span>+ ' + addCommas(facilities[7][4] * 10) + '$/s</span> | <span>- ' + addCommas(facilities[7][3] * 10) + 'g/s</span></span>'), theme: 'tooltipster-light', speed: 250 });
 		$('.enchantcursor1').tooltipster({ content: $('<span>By smearing the rare mixture of Dollar bills, Weed and Fertilizer on your gaming mouse, you managed to unlock a secret rapid fire button.</span>'), theme: 'tooltipster-light' });
 		$('.onlineshop').tooltipster({ content: $('<span>Starting an online shop to spread your business across the entire nation. <span>+ ' + addCommas(facilities[9][4] * 10) + '$/s</span> | <span>- ' + addCommas(facilities[9][3] * 10) + 'g/s</span></span></span>'), theme: 'tooltipster-light', speed: 250 });
 		$('.franchise').tooltipster({ content: $('<span>Expand the kush empire and sell the permission to buy and resell your weed! How cool is that?<span>+ ' + addCommas(facilities[10][4] * 10) + '$/s</span> | <span>- ' + addCommas(facilities[10][3] * 10) + 'g/s</span></span></span>'), theme: 'tooltipster-light', speed: 250 });
@@ -768,7 +766,7 @@
 
 		$('.localshop').tooltipster({ content: $('<span>Your local gardening shop will now stealthily deliver you fertilizer without anyone noticing. <span>+ ' + addCommas(facilities[23][4] * 10) + 'u/s</span> | <span>- ' + addCommas(facilities[23][3] * 10) + '$/s</span></span>'), theme: 'tooltipster-light', speed: 250 });
 		$('.fakefarm').tooltipster({ content: $('<span>A local farmer that will now buy fertilizer under his name and give it to you, while of course taking your money. <span>+ ' + addCommas(facilities[5][4] * 10) + 'u/s</span> | <span>- ' + addCommas(facilities[5][3] * 10) + '$/s</span></span>'), theme: 'tooltipster-light', speed: 250 });
-		$('.takeoverfactory').tooltipster({ content: $('<span>By hiring professionals and their dogs, there is now a dedicated factory producing at your command. <span>+ ' + addCommas(facilities[24][4] * 10) + 'u/s</span> | <span>- ' + addCommas(facilities[24][3] * 10) + '$/s</span></span>'), theme: 'tooltipster-light', speed: 250 });
+		$('.takeoverfactory').tooltipster({ content: $('<span>By hiring professionals and their dogs, you establish a dedicated factory that is now producing at your command. <span>+ ' + addCommas(facilities[24][4] * 10) + 'u/s</span> | <span>- ' + addCommas(facilities[24][3] * 10) + '$/s</span></span>'), theme: 'tooltipster-light', speed: 250 });
 		$('.fakefarm2').tooltipster({ content: $('<span>By blackmailing some officials, you manage to take over a whole facility full of potential fertilizer. Once mixed with money. <span>+ ' + addCommas(facilities[6][4] * 10) + 'u/s</span> | <span>- ' + addCommas(facilities[6][3] * 10) + '$/s</span></span>'), theme: 'tooltipster-light', speed: 250 });
 		$('.tradebonds1').tooltipster({ content: $('<span>You realise that the leadership of pretty much any country below the equator is happy to sell you their "fertilizer". <span>+ ' + addCommas(facilities[25][4] * 10) + 'u/s</span> | <span>- ' + addCommas(facilities[25][3] * 10) + '$/s</span></span>'), theme: 'tooltipster-light', speed: 250 });
 		$('.oceanfilter').tooltipster({ content: $('<span>Collecting the biomaterial of the oceans, you establish a constantly high flow of high-quality fertilizer. <span>+ ' + addCommas(facilities[26][4] * 10) + 'u/s</span> | <span>- ' + addCommas(facilities[26][3] * 10) + '$/s</span></span>'), theme: 'tooltipster-light', speed: 250 });
@@ -800,7 +798,7 @@
 </script>-->
 
 <div class="meny">
-	<p><b class="tooltip" title="JK (c)">KUSHIFY &#945; 2.6.1</b> <!--<div style="margin: 15px 5px 0;" class="fb-like" data-href="http://cetigo.github.io/kushify/" data-width="400" data-layout="standard" data-action="like" data-show-faces="true" data-share="true"></div>--><br><br>
+	<p><b class="tooltip" title="JK (c)">KUSHIFY &#945; 2.7.0</b> <!--<div style="margin: 15px 5px 0;" class="fb-like" data-href="http://cetigo.github.io/kushify/" data-width="400" data-layout="standard" data-action="like" data-show-faces="true" data-share="true"></div>--><br><br>
 
 	   <a class="intro" onclick="saveGame(true)">Export Save</a> 
 	   <a class="intro tooltip" title="Careful! Load up the save you entered." onclick="loadGame()">Import Save</a> 
@@ -881,9 +879,9 @@
 			<span class="intro appartment" onclick="buyFacilityM(2)"></span>
 			<span class="intro greenhouse" onclick="buyFacilityM(8)"></span>
 			<span class="intro drill" onclick="buyFacilityM(15)"></span>
-			<span class="intro synthetic1" onclick="buyFacilityM(16)"></span>
+			<!--<span class="intro synthetic1" onclick="buyFacilityM(16)"></span> DISABLED -->
 			<span class="intro underwater" onclick="buyFacilityM(17)"></span>
-			<span class="intro island" onclick="buyFacilityM(18)"></span>
+			<!--<span class="intro island" onclick="buyFacilityM(18)"></span> DISABLED -->
 			<span class="intro rainforest" onclick="buyFacilityM(19)"></span>
 			<span class="intro orbital" onclick="buyFacilityM(20)"></span>
 			<span class="intro lunar" onclick="buyFacilityM(21)"></span>
