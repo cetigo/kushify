@@ -636,8 +636,7 @@
 	    fertilizer = newFertilizer; //define new fertilizer
 
 
-	    for (var i = 0; i < facilities.length; i++) { //define the new amounts of every facility
-	    	//alert(facilities[i][0] + ' - ' + Number(saveArray[(i + 3)]));
+	    for (var i = 0; i < facilities.length; i++) {
 	        facilities[i][0] = Number(saveArray[(i + 3)]);
 	    }
 
@@ -714,6 +713,7 @@
 
 	function clearCookie() {
 	    setCookie("kushify_savegame", "", 30);
+	    setCookie("kushify_achievements", "", 30);
 	}
 
 	function coffeefy(classic) {
