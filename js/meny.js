@@ -232,6 +232,9 @@ var Meny = {
                 if (!isOpen) {
                     isOpen =
                         true;
+                    if (achievements[4][0] == 0) {
+                        fireAchievement(4);
+                    }
                     Meny.addClass(dom.wrapper, "meny-active");
                     dom.cover.style.height = dom.contents.scrollHeight + "px";
                     dom.cover.style.visibility = "visible";

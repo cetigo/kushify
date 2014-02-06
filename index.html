@@ -38,6 +38,8 @@
 	var mps = 0; //Income per Second | it's actually income / expense per 1/10th second. So 1 amps = 0.1 mps
 	var mes = 0; //Expense per Second
 
+	var clicks = 0;
+
 	var weed = 20; //starting values
 	var wps = 0;
 	var wes = 0;
@@ -55,7 +57,22 @@
 	//Achievements
 	var achievements = new Array();
 
-	achievements[0] = new Array(0, 'Taste Of Blood');
+	achievements[0] = new Array(0, 'Taste of Blood');
+	achievements[1] = new Array(0, 'The Circle');
+	achievements[2] = new Array(0, 'Click, Click');
+	achievements[3] = new Array(0, 'Time to Rise');
+	achievements[4] = new Array(0, 'Stunningly 3D');
+	achievements[5] = new Array(0, 'Tenacious');
+	achievements[6] = new Array(0, 'SFW');
+	achievements[7] = new Array(0, 'It Begins');
+	achievements[8] = new Array(0, 'Set for Life');
+	achievements[9] = new Array(0, 'I feel so Slow');
+	achievements[10] = new Array(0, 'The Horror');
+	achievements[11] = new Array(0, 'The Dream');
+	achievements[12] = new Array(0, 'Rebel');
+	achievements[13] = new Array(0, 'With Pride');
+	achievements[14] = new Array(0, 'Insomnia');
+	achievements[15] = new Array(0, 'Straight Edge');
 
 	 //Facility and DataHeap
 	var facilities = new Array(); //dealer, trailer, greenhouse, export1, etc
@@ -114,6 +131,13 @@
 	            introHandler(true);
 	        };
 	    };
+	    clicks++;
+	    if (clicks == 100 && achievements[2][0] == 0) {
+	    	fireAchievement(2);
+	    }
+	    if (clicks == 1000 && achievements[7][0] == 0) {
+	    	fireAchievement(7);
+	    }
 	}
 
 	$(function () {
@@ -170,67 +194,65 @@
 	    var redrawPerSecond = false;
 	    //
 
-	if (weed < wes) {
-		weedSpent = weed;
-		weedDebt = wes - weed;
-		weed = 0;
-		redrawPerSecond = true;
-	}
+		if (weed < wes) {
+			weedSpent = weed;
+			weedDebt = wes - weed;
+			weed = 0;
+			redrawPerSecond = true;
+		}
 
-	else {
-		weedSpent = wes;
-		weed = weed - wes;
-	}
+		else {
+			weedSpent = wes;
+			weed = weed - wes;
+		}
 
-	if (wes > 0) {
-		money = money + ( mps * (weedSpent / wes));
-		moneyflow = ( mps * (weedSpent / wes)) - mes;
-	}
-	//
+		if (wes > 0) {
+			money = money + ( mps * (weedSpent / wes));
+			moneyflow = ( mps * (weedSpent / wes)) - mes;
+		}
 
-	if (money < mes) {
-		moneySpent = money;
-		moneyDebt = mes - money;
-		money = 0;
-		redrawPerSecond = true;
-	}
+		if (money < mes) {
+			moneySpent = money;
+			moneyDebt = mes - money;
+			money = 0;
+			redrawPerSecond = true;
+		}
 
-	else {
-		moneySpent = mes;
-		money = money - mes;
-	}
+		else {
+			moneySpent = mes;
+			money = money - mes;
+		}
 
-	if (mes > 0) {
-		fertilizer = fertilizer + ( fps * (moneySpent / mes));
-		fertilizerflow = ( fps * (moneySpent / mes)) - fes;
-	}
-	//
-	if (fertilizer < fes) {
-		fertilizerSpent = fertilizer;
-		fertilizerDebt = fes - fertilizer;
-		fertilizer = 0;
-		redrawPerSecond = true;
-	}
+		if (mes > 0) {
+			fertilizer = fertilizer + ( fps * (moneySpent / mes));
+			fertilizerflow = ( fps * (moneySpent / mes)) - fes;
+		}
+		//
+		if (fertilizer < fes) {
+			fertilizerSpent = fertilizer;
+			fertilizerDebt = fes - fertilizer;
+			fertilizer = 0;
+			redrawPerSecond = true;
+		}
 
-	else {
-		fertilizerSpent = fes;
-		fertilizer = fertilizer - fes;
-	}
+		else {
+			fertilizerSpent = fes;
+			fertilizer = fertilizer - fes;
+		}
 
-	if (fes > 0) {
-		weed = weed + ( wps * (fertilizerSpent / fes));
-		weedflow = ( wps * (fertilizerSpent / fes)) - wes;
-	}
-	
+		if (fes > 0) {
+			weed = weed + ( wps * (fertilizerSpent / fes));
+			weedflow = ( wps * (fertilizerSpent / fes)) - wes;
+		}
 
-	weed = weed - weedDebt;
-	if (weed < 0) { weed = 0 }
+		weed = weed - weedDebt;
+		if (weed < 0) { weed = 0 }
 
-	money = money - moneyDebt;
-	if (money < 0) { money = 0 }
+		money = money - moneyDebt;
+		if (money < 0) { money = 0 }
 
-	fertilizer = fertilizer - fertilizerDebt;
-	if (fertilizer < 0) { fertilizer = 0 }
+		fertilizer = fertilizer - fertilizerDebt;
+		if (fertilizer < 0) { fertilizer = 0 }
 
 		if (redrawPerSecond) {
 			updatePerSecond();
@@ -266,10 +288,14 @@
 				}
 
 				if (achievements[0][0] == 0) {
-					achievements[0][0] = 1;
-					$(".achievement").removeClass('hidden');
-	        		setTimeout("$('.achievement').addClass('hidden');", 2e3);
-				};
+					fireAchievement(0);
+				}
+
+				if (i == 2 || i == 3 || i == 5) {
+					if (achievements[3][0] == 0) {
+						fireAchievement(3);
+					}
+				}
 
 	            facilities[i][0]++; //add one facility
 	            money = money - increasePrice(i, facilities[i][0]); //distract money
@@ -281,6 +307,13 @@
 	            $(facilities[i][2]).css("background-color", "");
 	    }, 1000);
 	    return;
+	}
+
+	function fireAchievement(i) {
+		achievements[i][0] = 1; //set the achievement to "done"
+		$("#achievementspan").text(achievements[i][1]);
+		$(".achievement").removeClass('hidden');
+	    setTimeout("$('.achievement').addClass('hidden');", 2e3);
 	}
 
 	function checkSpeed() { // check all transfer and gain speeds and apply respective animations to arrow and ps
@@ -417,6 +450,10 @@
 	    fertilizerflow = (fps - fes);
 	    cursorPower = 1 + (1.5 * facilities[4][0]);
 	    updatePerSecond();
+
+	    if (wps > 0 && mps > 0 && fps > 0 && achievements[1][0] == 0) {
+			fireAchievement(1);
+		}
 	}
 
 	function increasePrice(facility, number) {
@@ -530,10 +567,21 @@
 	function saveGame(useTextfield) {
 	    var saveRaw = Math.round(money) + "%" + Math.round(weed) + "%" + Math.round(fertilizer) + "%" + facilities[0][0] + "%" + facilities[1][0] + "%" + facilities[2][0] + "%" + facilities[3][0] + "%" + facilities[4][0] + "%" + facilities[5][0] + "%" + facilities[6][0] + "%" + facilities[7][0] + "%" + facilities[8][0] + "%" + facilities[9][0] + "%" + facilities[10][0] + "%" + facilities[11][0] + "%" + facilities[12][0] + "%" + facilities[13][0] + "%" + facilities[14][0] + "%" + facilities[15][0] + "%" + facilities[16][0] + "%" + facilities[17][0] + "%" + facilities[18][0] + "%" + facilities[19][0] + "%" + facilities[20][0] + "%" + facilities[21][0] + "%" + facilities[22][0] + "%" + facilities[23][0] + "%" + facilities[24][0] + "%" + facilities[25][0] + "%" + facilities[26][0] + "%" + facilities[27][0] + "%" + coffeeMod + "%" + particlesDeactivated + "%" + softAnimations + "%" + expandAnimations;
 	    saveCrypt = encode64(saveRaw);
+
 	    if (useTextfield === true) {
 	        $('#saveForm').val(saveCrypt);
-	    } else {
+	    } 
+
+	    else {
 	        setCookie("kushify_savegame", saveCrypt, 30);
+
+	        var saveARaw = achievements[0][0] + "%" + achievements[1][0] + "%" + achievements[2][0] + "%" + achievements[3][0] + "%" + achievements[4][0] + "%" + achievements[5][0] + "%" + achievements[6][0] + "%" + achievements[7][0] + "%" + achievements[8][0] + "%" + achievements[9][0] + "%" + achievements[10][0] + "%" + achievements[11][0] + "%" + achievements[12][0] + "%" + achievements[13][0] + "%" + achievements[14][0] + "%" + achievements[15][0];
+
+	        saveARaw = encode64(saveARaw);
+
+	        setCookie("kushify_achievements", saveARaw, 30);
+
+	        //check if successful
 	        var reg = getCookie("kushify_savegame");
 	    	if (reg == saveCrypt) {
 	        	$("#alertMessage").fadeIn(400);
@@ -549,7 +597,14 @@
 	function loadGame(useCookie, doSkipIntro) {
 	    if (useCookie === true) {
 	        var cryptedSave = getCookie("kushify_savegame");
-	    } else {
+	        var cryptedAchievements = getCookie("kushify_achievements");
+	        var achieveState = decode64(cryptedAchievements); //Decode the Save
+	    	var achieveArray = achieveState.split("%");
+	        for (var i = 0; i < achievements.length; i++) {
+	        	achievements[i][0] = Number(achieveArray[i]);
+	    	}
+	    } 
+	    else {
 	        var cryptedSave = $('#saveForm').val();
 	        if (cryptedSave === "" || decode64(cryptedSave) === false) { //check if input is empty or contains illegal chars
 	            alert('Save Corrupt! Empty or illegal characters found!');
@@ -932,7 +987,7 @@
 	<div id="alertMessage2">Save unsuccessful!</div>
 	<div id="alertMessage3">Game Loaded!</div>
 
-	<div class="achievement hidden"><img src="trophy.png"><span>Taste Of Blood</span></div>
+	<div class="achievement hidden"><img src="trophy.png"><span id="achievementspan"></span></div>
 </div>
 
 <!-- Particles -->
