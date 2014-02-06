@@ -52,6 +52,11 @@
 	 //Intro Handling
 	var introstep = 0;
 
+	//Achievements
+	var achievements = new Array();
+
+	achievements[0] = new Array(0, 'Taste Of Blood');
+
 	 //Facility and DataHeap
 	var facilities = new Array(); //dealer, trailer, greenhouse, export1, etc
 
@@ -259,6 +264,12 @@
 				if (introstep == 3) {
 					introHandler();
 				}
+
+				if (achievements[0][0] == 0) {
+					achievements[0][0] = 1;
+					$(".achievement").removeClass('hidden');
+	        		setTimeout("$('.achievement').addClass('hidden');", 2e3);
+				};
 
 	            facilities[i][0]++; //add one facility
 	            money = money - increasePrice(i, facilities[i][0]); //distract money
@@ -798,7 +809,7 @@
 </script>-->
 
 <div class="meny">
-	<p><b class="tooltip" title="JK (c)">KUSHIFY &#945; 2.7.0</b> <!--<div style="margin: 15px 5px 0;" class="fb-like" data-href="http://cetigo.github.io/kushify/" data-width="400" data-layout="standard" data-action="like" data-show-faces="true" data-share="true"></div>--><br><br>
+	<p><b class="tooltip" title="JK (c)">KUSHIFY &#945; 2.7.1</b> <!--<div style="margin: 15px 5px 0;" class="fb-like" data-href="http://cetigo.github.io/kushify/" data-width="400" data-layout="standard" data-action="like" data-show-faces="true" data-share="true"></div>--><br><br>
 
 	   <a class="intro" onclick="saveGame(true)">Export Save</a> 
 	   <a class="intro tooltip" title="Careful! Load up the save you entered." onclick="loadGame()">Import Save</a> 
@@ -920,6 +931,8 @@
 	<div id="alertMessage">Game Saved!</div>
 	<div id="alertMessage2">Save unsuccessful!</div>
 	<div id="alertMessage3">Game Loaded!</div>
+
+	<div class="achievement hidden"><img src="icons/Trophy.png"><span>Taste Of Blood</span></div>
 </div>
 
 <!-- Particles -->

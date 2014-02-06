@@ -102,9 +102,9 @@ body {
 	border-radius: 5px;
 	position: absolute;
 
-	-webkit-box-shadow: 0 1px 2px #222;
-	-moz-box-shadow: 0 2px 1px #222;
-	box-shadow: 0 2px 1px #222;
+	-webkit-box-shadow: 0 1px 2px #000;
+	-moz-box-shadow: 0 2px 1px #000;
+	box-shadow: 0 2px 1px #000;
 
 	text-align: justify;
 	padding: 5px;
@@ -227,9 +227,9 @@ body {
              0px 8px 13px rgba(0,0,0,0.1),
              0px 18px 23px rgba(0,0,0,0.1);
 
-    -webkit-box-shadow: 0 3px 2px #222;
-	-moz-box-shadow: 0 3px 2px #222;
-	box-shadow: 0 3px 2px #222;
+    -webkit-box-shadow: 0 3px 2px #010101;
+	-moz-box-shadow: 0 3px 2px #010101;
+	box-shadow: 0 3px 2px #010101;
 
 	cursor: pointer;
 
@@ -383,9 +383,9 @@ body {
 	
 	color: #fff;
 	border-radius: 15px;
-	-webkit-box-shadow: 0 2px 2px #222;
-	-moz-box-shadow: 0 2px 2px #222;
-	box-shadow: 0 2px 2px #222;
+	-webkit-box-shadow: 0 2px 2px #010101;
+	-moz-box-shadow: 0 2px 2px #010101;
+	box-shadow: 0 2px 2px #010101;
 	text-align: center;
 	font-size: 18px;
 	line-height: 30px;
@@ -540,6 +540,7 @@ body {
 	font-weight: 300;
 	color: #F8F6DC;
 	cursor: default;
+	position: relative;
 
 	-webkit-touch-callout: none;
 	-webkit-user-select: none;
@@ -567,7 +568,11 @@ body {
 #title.sizedown {
 	margin: 0 auto;
 	font-size: 50px;
+	z-index: 100;
 	background-color: rgba(106, 194, 98, 1);
+	-webkit-box-shadow: 0 10px 6px -6px #000;
+	-moz-box-shadow: 0 10px 6px -6px #000;
+	box-shadow: 0 10px 6px -6px #000;
 }
 
 .dealer:after, .trailer:after, .greenhouse:after, .export1:after, .enchantcursor1:after{
@@ -625,9 +630,87 @@ body {
 	background-color: rgba(255,255,255,0.7);
 }
 
+/* ACHIEVEMENT MESSAGE */
+
+.achievement {
+	z-index:10;
+    font-family: "Open Sans Condensed";
+	color: #F3F0D1;
+	text-shadow: 0px 4px 3px rgba(0,0,0,0.4),
+             0px 8px 13px rgba(0,0,0,0.1),
+             0px 18px 23px rgba(0,0,0,0.1);
+    line-height: 60px;
+	border-left: 4px solid #539753;
+  	background-color: rgba(106, 194, 98, 1);
+
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+
+    overflow: hidden;
+    font-size: 30px;
+    padding:5px;
+    cursor:pointer;
+    position: absolute;
+    left: 50%;
+    margin-left: -122px;
+
+    width:220px;
+    height:60px;
+    top:115px;
+    text-align:center;
+    -webkit-transition: all 0.6s;
+	-moz-transition: all 0.6s;
+	-ms-transition: all 0.6s;
+	-o-transition: all 0.6s;
+	transition: all 0.6s;
+}
+
+.achievement img {
+	width:50px;
+	height:50px;
+	position: absolute;
+	top: 10px;
+	left: 10px;
+	-webkit-transition: all 0.4s;
+	-moz-transition: all 0.4s;
+	-ms-transition: all 0.4s;
+	-o-transition: all 0.4s;
+	transition: all 0.4s;
+}
+
+.achievement span {
+	text-align: left;
+	left: 70px;
+	position: absolute;
+	padding: 2px;
+	-webkit-transition: all 0.4s;
+	-moz-transition: all 0.4s;
+	-ms-transition: all 0.4s;
+	-o-transition: all 0.4s;
+	transition: all 0.4s;
+}
+
+.achievement.hidden {
+	top: -30px;
+	opacity: 0;
+}
+
+.achievement.hidden img {
+	left: -50px;
+	opacity: 0;
+	
+}
+
+.achievement.hidden span {
+	opacity: 0;
+	left: 120px;
+}
+
+
+/* ALERT MESSAGE */
 #alertMessage, #alertMessage2, #alertMessage3, #alertMessage4 {
 	z-index:60;
-    font-family: "Chau Philomene One";
+    font-family: "Open Sans Condensed";
 	color: #F3F0D1;
 	background-color: rgba(106, 194, 98, 1);
     -moz-border-radius: 5px;
@@ -637,11 +720,12 @@ body {
     cursor:default;
     position: fixed;
     left: 50%;
-    margin-left: -95px;
+    margin-left: -100px;
     width:190px;
     height:20px;
-    top:170px;
+    top:195px;
     text-align:center;
+
     display:none;
 }
 
