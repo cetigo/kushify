@@ -699,7 +699,7 @@ body {
              0px 8px 13px rgba(0,0,0,0.1),
              0px 18px 23px rgba(0,0,0,0.1);
 
-    -webkit-text-stroke: 1px #668E40;
+    -webkit-text-stroke: 1px rgba(255,255,255,0.7);
     font-smooth:always;
 	-webkit-font-smoothing: antialiased;
 }
