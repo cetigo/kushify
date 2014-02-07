@@ -57,6 +57,21 @@ body {
 	box-shadow: 0 2px 1px #777;
 }
 
+.meny a.smalllink {
+	margin: 0 5px 0;
+	padding: 0;
+	background-color: transparent;
+	height: auto;
+	width: auto;
+	border: none;
+	line-height: 1;
+	-webkit-box-shadow: none;
+	-moz-box-shadow: none;
+	box-shadow: none;
+
+}
+
+
 .meny a.dev {
 	background: #CD2209;
 }
