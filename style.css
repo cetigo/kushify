@@ -181,6 +181,91 @@ body {
 	background-position: 0 340px;
 }
 
+#contentsblur.activated {
+	-webkit-filter: blur(5px);
+	-moz-filter: blur(5px);
+	-o-filter: blur(5px);
+	-ms-filter: blur(5px);
+	filter: blur(5px);
+
+	pointer-events: none;
+}
+
+#bluroverlay {
+	position: absolute;
+	z-index: 102;
+	top: 210px;
+	left: 50%;
+	width: 500px; 
+	height: 450px;
+	margin-left: -265px;
+	font-family: "Open Sans Condensed";
+
+	padding: 15px;
+	border-radius: 15px;
+	background-color: rgba(255,255,255,0.95);
+	-webkit-box-shadow: 0 3px 2px #010101;
+	-moz-box-shadow: 0 3px 2px #010101;
+	box-shadow: 0 3px 2px #010101;
+	text-align: center;
+	padding-top: 50px;
+
+	display: none;
+}
+
+#blurunderlay {
+	position: fixed;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	right: 0;
+	z-index: 101;
+	display: none;
+}
+
+#bluroverlay h1 {
+	text-align: center;
+	position: absolute;
+	font-weight: 400;
+	font-size: 35px;
+	top: 3px;
+	width: 100%;
+	left: 0px;
+	right: 0px;
+	color: #111;
+	cursor: default;
+}
+
+#bluroverlay .achievementbox {
+	display: inline-block;
+	width: 80px;
+	height: 80px;
+	background-color: #999;
+	border-bottom: 2px solid #222;
+	margin: 12px;
+	border-radius: 2px;
+}
+
+#bluroverlay .achievementbox img {
+	width: 60px;
+	height: 60px;
+	margin: 10px;
+	-webkit-filter: grayscale(100%);
+	-moz-filter: grayscale(100%);
+	filter: grayscale(100%);
+}
+
+#bluroverlay .achievementbox.earned {
+	border-color: #539753;
+  	background-color: rgba(106, 194, 98, 1);
+}
+
+#bluroverlay .achievementbox.earned img {
+	-webkit-filter: brightness(3);
+	-moz-filter: brightness(3);
+	filter: brightness(3);
+}
+
 #list span {
 	font-family: "Open Sans Condensed";
 	text-shadow: 0 2px 2px black;
@@ -292,6 +377,60 @@ body {
 	margin-top: 5px;
 }
 
+/* OPTIONS BAR */
+#optionsbar {
+	z-index:10;
+  	background-color: #333;
+    -moz-border-radius: 30px;
+    border-radius: 30px;
+    overflow: hidden;
+    position: absolute;
+    left: 50%;
+    margin-left: -84px;
+    width:168px;
+    height:60px;
+    top: 140px;
+    text-align:center;
+    -webkit-transition: all 0.6s;
+	-moz-transition: all 0.6s;
+	-ms-transition: all 0.6s;
+	-o-transition: all 0.6s;
+	transition: all 0.6s;
+}
+
+#optionsbar .optionsbarbox {
+	display: inline-block;
+	width: 50px;
+	height: 50px;
+	padding: 5px 2px 5px 2px;
+	margin: 0 -2px 0 -2px;
+	cursor: pointer;
+	-webkit-transition: all 0.6s;
+	-moz-transition: all 0.6s;
+	-ms-transition: all 0.6s;
+	-o-transition: all 0.6s;
+	transition: all 0.6s;
+}
+
+#optionsbar .optionsbarbox:first-child {
+	padding: 5px 2px 5px 5px;
+	margin-left: -5px;
+}
+
+#optionsbar .optionsbarbox:last-child {
+	padding: 5px 5px 5px 2px;
+	margin-right: -5px;
+}
+
+#optionsbar .optionsbarbox:hover {
+	background-color: rgba(255,255,255,0.5);
+}
+
+#optionsbar .optionsbarbox img {
+	height: 50px;
+	width: 50px;
+}
+
 /* BASIC PER SECOND INDICATOR */
 .wps, .mps, .fps {
 	-webkit-touch-callout: none;
@@ -366,9 +505,9 @@ body {
 }
 
 /* RESOURCE BUTTON BACKGROUNDS */
-#weed { background: url(weed.jpg) top center; background-position-y: -5px; }
-#money { background: url(money.jpg) top center; background-position-y: -5px;}
-#fertilizer { background: url(fertilizer.jpg) top center; background-position-y: -5px;}
+#weed { background: url(weed.jpg) top center; background-position: -5px -5px; }
+#money { background: url(money.jpg) top center; background-position: -5px -5px;}
+#fertilizer { background: url(fertilizer.jpg) top center; background-position: -5px -5px;}
 
 /* BASIC ARROW */
 .arrow {
@@ -656,7 +795,7 @@ body {
 
     width:220px;
     height:60px;
-    top:115px;
+    top: 62px;
     text-align:center;
     -webkit-transition: all 0.6s;
 	-moz-transition: all 0.6s;
@@ -676,6 +815,10 @@ body {
 	-ms-transition: all 0.4s;
 	-o-transition: all 0.4s;
 	transition: all 0.4s;
+
+	-webkit-filter: brightness(3);
+	-moz-filter: brightness(3);
+	filter: brightness(3);
 }
 
 .achievement span {
@@ -722,8 +865,9 @@ body {
     left: 50%;
     margin-left: -100px;
     width:190px;
-    height:20px;
-    top:195px;
+    height:40px;
+    line-height: 60px;
+    top:35px;
     text-align:center;
 
     display:none;

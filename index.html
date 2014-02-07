@@ -38,7 +38,10 @@
 	var mps = 0; //Income per Second | it's actually income / expense per 1/10th second. So 1 amps = 0.1 mps
 	var mes = 0; //Expense per Second
 
+	// achievement relevant variables
 	var clicks = 0;
+	var fClicks = 0;
+	var everClickedWeed = false;
 
 	var weed = 20; //starting values
 	var wps = 0;
@@ -51,23 +54,24 @@
 	 //Clicked Amount
 	var cursorPower = 1;
 
-	 //Intro Handling
+	 // UI
 	var introstep = 0;
+	var acvVisible = false;
 
 	//Achievements
 	var achievements = new Array();
 
-	achievements[0] = new Array(0, 'Taste of Blood');
-	achievements[1] = new Array(0, 'The Circle');
-	achievements[2] = new Array(0, 'Click, Click');
-	achievements[3] = new Array(0, 'Time to Rise');
-	achievements[4] = new Array(0, 'Stunningly 3D');
-	achievements[5] = new Array(0, 'Tenacious');
-	achievements[6] = new Array(0, 'SFW');
-	achievements[7] = new Array(0, 'It Begins');
-	achievements[8] = new Array(0, 'Set for Life');
-	achievements[9] = new Array(0, 'I feel so Slow');
-	achievements[10] = new Array(0, 'The Horror');
+	achievements[0] = new Array(0, 'Taste of Blood'); //
+	achievements[1] = new Array(0, 'The Circle'); //
+	achievements[2] = new Array(0, 'Click, Click'); //
+	achievements[3] = new Array(0, 'Time to Rise'); //
+	achievements[4] = new Array(0, 'Stunningly 3D'); //
+	achievements[5] = new Array(0, 'Tenacious'); //
+	achievements[6] = new Array(0, 'SFW'); //
+	achievements[7] = new Array(0, 'It Begins'); //
+	achievements[8] = new Array(0, 'Set for Life'); //
+	achievements[9] = new Array(0, 'I feel so Slow'); //
+	achievements[10] = new Array(0, 'The Horror'); //
 	achievements[11] = new Array(0, 'The Dream');
 	achievements[12] = new Array(0, 'Rebel');
 	achievements[13] = new Array(0, 'With Pride');
@@ -121,9 +125,13 @@
 	function clicked(type) {
 	    if (type == 'fertilizer') {
 	        fertilizer = fertilizer + (cursorPower / 2);
+	        fClicks++;
 	    };
 	    if (type == 'weed') {
 	        weed = weed + cursorPower;
+	        if (everClickedWeed == false) {
+	        	everClickedWeed = true;
+	        }
 	    };
 	    if (type == 'money') {
 	        money = money + cursorPower;
@@ -132,11 +140,14 @@
 	        };
 	    };
 	    clicks++;
-	    if (clicks == 100 && achievements[2][0] == 0) {
+	    if (clicks == 500 && achievements[2][0] == 0) {
 	    	fireAchievement(2);
 	    }
-	    if (clicks == 1000 && achievements[7][0] == 0) {
+	    if (clicks == 1500 && achievements[7][0] == 0) {
 	    	fireAchievement(7);
+	    }
+	    if (fClicks == 150 && achievements[9][0] == 0) {
+	    	fireAchievement(9);
 	    }
 	}
 
@@ -161,6 +172,9 @@
 	    	if (weedflow < 0 && weed == 0) { 
 	    		var actualTitle = document.title;
 	    		$('#weed').addClass('alert');
+	    		if (achievements[10][0] == 0) {
+	    			fireAchievement(10);
+	    		}
 	    		document.title = "You're out of " + weedOrCoffee + "!";
 	    		setTimeout(function(){ document.title = actualTitle },1000);
 	    	}
@@ -256,7 +270,15 @@
 
 		if (redrawPerSecond) {
 			updatePerSecond();
-		};
+		}
+
+		if (money > 1000000 && achievements[11][0] == 0) {
+			fireAchievement(11);
+		}
+
+		if (money > 2000000 && achievements[15][0] == 0 && everClickedWeed == false) {
+			fireAchievement(15);
+		}
 
 	    $('#fertilizerspan').text(addCommas(Math.round(fertilizer))); //print
 	    $('#weedspan').text(addCommas(Math.round(weed)));
@@ -310,10 +332,13 @@
 	}
 
 	function fireAchievement(i) {
-		achievements[i][0] = 1; //set the achievement to "done"
-		$("#achievementspan").text(achievements[i][1]);
-		$(".achievement").removeClass('hidden');
-	    setTimeout("$('.achievement').addClass('hidden');", 2e3);
+		achievements[i][0] = 1; //set the achievement to done
+		var acvtarget = "#acv" + (i+ 1);
+		$(acvtarget).addClass('earned'); //target the achievement and set it to done
+		$("#achievementimg").attr("src","icons/" + (i+1) + ".png"); //prepare the correct image
+		$("#achievementspan").text(achievements[i][1]); // prepare the correct text
+		$(".achievement").removeClass('hidden'); // fade in
+	    setTimeout("$('.achievement').addClass('hidden');", 3e3); // fade out after 3 seconds
 	}
 
 	function checkSpeed() { // check all transfer and gain speeds and apply respective animations to arrow and ps
@@ -454,6 +479,9 @@
 	    if (wps > 0 && mps > 0 && fps > 0 && achievements[1][0] == 0) {
 			fireAchievement(1);
 		}
+		if (mps > 10 && achievements[8][0] == 0) {
+			fireAchievement(8);
+		}
 	}
 
 	function increasePrice(facility, number) {
@@ -570,6 +598,9 @@
 
 	    if (useTextfield === true) {
 	        $('#saveForm').val(saveCrypt);
+	        if (achievements[13][0] == 0) {
+	        	fireAchievement(13);
+	        }
 	    } 
 
 	    else {
@@ -602,6 +633,13 @@
 	    	var achieveArray = achieveState.split("%");
 	        for (var i = 0; i < achievements.length; i++) {
 	        	achievements[i][0] = Number(achieveArray[i]);
+	        	var acvtarget = '#acv' + (i + 1);
+	        	if (Number(achieveArray[i] == 1)) {
+	        		$(acvtarget).addClass('earned');
+	        	}
+	        	else {
+	        		$(acvtarget).removeClass('earned');
+	        	}
 	    	}
 	    } 
 	    else {
@@ -708,6 +746,9 @@
 	    if (reg != "") {
 	        skipIntro();
 	        loadGame(true);
+	        if (achievements[5][0] == 0) {
+	        	fireAchievement(5);
+	        }
 	    }
 	}
 
@@ -731,10 +772,35 @@
 	    $("#weed, .wtom, #containerwtom").addClass('coffeemod');
 	    $('#title').text('COFFEEFY');
 	    weedOrCoffee = 'coffee';
+	    if (achievements[6][0] == 0) {
+	    	fireAchievement(6);
+	    }
 	    $('.coffeefy').fadeOut("400", function () {
 	        $('.kushify').fadeIn();
 	    });
 
+	}
+
+	function showAchievements() {
+		if (acvVisible == false) {
+			$('#bluroverlay, #blurunderlay').fadeIn('100');
+			$('#contentsblur').addClass('activated');
+			acvVisible = true;
+			setTimeout(function(){
+				$("#blurunderlay").bind('click', function() { // close the overlay once clicked away
+			    	showAchievements();
+		    	});
+			},500);
+			
+			return;
+		}
+		else {
+			$('#bluroverlay, #blurunderlay').fadeOut('100');
+			$('#contentsblur').removeClass('activated');
+			acvVisible = false;
+			$("#blurunderlay").unbind('click'); // remove the listener
+			return;
+		}
 	}
 
 	$(document).ready(function () {
@@ -755,6 +821,9 @@
 	            coffeefy(true);
 	        } else {
 	            coffeefy();
+	            if ($('#switch').prop('checked') == false && $('#switch2').prop('checked') == false && $('#switch3').prop('checked') == false && $('#switch4').prop('checked') == false && achievements[12][0] == 0) {
+	            	fireAchievement(12);
+	            }
 	        }
 	    });
 
@@ -764,6 +833,9 @@
 	            //menuflipDeactivated = false; meny doesnt seem to like being interfered with. wip.
 	        } else {
 	            particlesDeactivated = true;
+	            if ($('#switch').prop('checked') == false && $('#switch2').prop('checked') == false && $('#switch3').prop('checked') == false && $('#switch4').prop('checked') == false && achievements[12][0] == 0) {
+	            	fireAchievement(12);
+	            }
 	            //menuflipDeactivated = true; meny doesnt seem to like being interfered with. wip.
 	        }
 	    });
@@ -780,6 +852,9 @@
 	        	if (introstep == 4) {
 	        		checkSpeed();
 	        	};
+	        	if ($('#switch').prop('checked') == false && $('#switch2').prop('checked') == false && $('#switch3').prop('checked') == false && $('#switch4').prop('checked') == false && achievements[12][0] == 0) {
+	        		fireAchievement(12);
+	        	}
 	        }
 	    });
 
@@ -788,6 +863,9 @@
 	            expandAnimations = true;
 	        } else {
 	            expandAnimations = false;
+	            if ($('#switch').prop('checked') == false && $('#switch2').prop('checked') == false && $('#switch3').prop('checked') == false && $('#switch4').prop('checked') == false && achievements[12][0] == 0) {
+	            	fireAchievement(12);
+	            }
 	        }
 	    });
 
@@ -838,6 +916,12 @@
 		$('.oceanfilter').tooltipster({ content: $('<span>Collecting the biomaterial of the oceans, you establish a constantly high flow of high-quality fertilizer. <span>+ ' + addCommas(facilities[26][4] * 10) + 'u/s</span> | <span>- ' + addCommas(facilities[26][3] * 10) + '$/s</span></span>'), theme: 'tooltipster-light', speed: 250 });
 		$('.alphacondenser').tooltipster({ content: $('<span>Kushify inc.s research department developes a method to condense the radioactive alpha rays emitted by the sun into material that is "pretty much the same thing". <span>+ ' + addCommas(facilities[27][4] * 10) + 'u/s</span> | <span>- ' + addCommas(facilities[27][3] * 10) + '$/s</span></span>'), theme: 'tooltipster-light', speed: 250 });
 
+		var today = new Date().getHours();
+		if (today >= 0 && today <= 4) {
+		   setTimeout(function () { fireAchievement(14); }, 120*60*1000);
+		}
+
+
 		jQuery(window).bind('beforeunload', function(){
 			var reg = getCookie("kushify_savegame");
 	    	if (reg != "") {
@@ -864,7 +948,7 @@
 </script>-->
 
 <div class="meny">
-	<p><b class="tooltip" title="JK (c)">KUSHIFY &#945; 2.7.1</b> <!--<div style="margin: 15px 5px 0;" class="fb-like" data-href="http://cetigo.github.io/kushify/" data-width="400" data-layout="standard" data-action="like" data-show-faces="true" data-share="true"></div>--><br><br>
+	<p><b class="tooltip" title="JK (c)">KUSHIFY &#945; 2.7.2</b> <!--<div style="margin: 15px 5px 0;" class="fb-like" data-href="http://cetigo.github.io/kushify/" data-width="400" data-layout="standard" data-action="like" data-show-faces="true" data-share="true"></div>--><br><br>
 
 	   <a class="intro" onclick="saveGame(true)">Export Save</a> 
 	   <a class="intro tooltip" title="Careful! Load up the save you entered." onclick="loadGame()">Import Save</a> 
@@ -905,6 +989,30 @@
 
 <div class="contents">
 
+	<div id="bluroverlay">
+		<h1>Achievements</h1>
+		<div class="achievementbox tooltip" title="First Blood - Buy your first facility" id="acv1"><img src="icons/1.png"></div>
+		<div class="achievementbox tooltip" title="The Circle - Have a positive income of every resource" id="acv2"><img src="icons/2.png"></div>
+		<div class="achievementbox tooltip" title="Click, Click - Click 500 times" id="acv3"><img src="icons/3.png"></div>
+		<div class="achievementbox tooltip" title="Time to Rise - Advance to the second tier of facilities" id="acv4"><img src="icons/4.png"></div><br>
+		<div class="achievementbox tooltip" title="Stunningly 3D - Discover the ingame menu" id="acv5"><img src="icons/5.png"></div>
+		<div class="achievementbox tooltip" title="Tenacious - Return to Kushify" id="acv6"><img src="icons/6.png"></div>
+		<div class="achievementbox tooltip" title="SFW - Turn your game into a worksafe game" id="acv7"><img src="icons/7.png"></div>
+		<div class="achievementbox tooltip" title="It Begins - Click 1500 times" id="acv8"><img src="icons/8.png"></div><br>
+		<div class="achievementbox tooltip" title="Set for Life - Reach 100$/s" id="acv9"><img src="icons/9.png"></div>
+		<div class="achievementbox tooltip" title="I feel so Slow - Click 150 times on the fertilizer" id="acv10"><img src="icons/10.png"></div>
+		<div class="achievementbox tooltip" title="The Horror - Reach 0 weed or coffee" id="acv11"><img src="icons/11.png"></div>
+		<div class="achievementbox tooltip" title="The Dream - Reach 1 Million Dollars" id="acv12"><img src="icons/12.png"></div><br>
+		<div class="achievementbox tooltip" title="Rebel - Fight the system!" id="acv13"><img src="icons/13.png"></div>
+		<div class="achievementbox tooltip" title="With Pride - Brag with your save!" id="acv14"><img src="icons/14.png"></div>
+		<div class="achievementbox tooltip" title="Insomnia - Play a lot, way too late" id="acv15"><img src="icons/15.png"></div>
+		<div class="achievementbox tooltip" title="Straight Edge - Deny the enticement of drugs until you reach 2 Million Dollars" id="acv16"><img src="icons/16.png"></div>
+	</div>
+
+	<div id="blurunderlay"></div>
+
+	<div id="contentsblur">
+
 	<div id="title">KUSHIFY</div>
 
 	<div id="intro">
@@ -913,6 +1021,11 @@
 		<a id="skipintro" href="#" onclick="skipIntro()" style="display:none; color:#fff; font-size: 18px;">Skip Intro >></a>
 	</div>
 
+	<div id="optionsbar" class="intro">
+		<div class="optionsbarbox tooltip" title="Achievements!" onclick="showAchievements()"><img src="trophy.png"></div>
+		<div class="optionsbarbox tooltip" title="Settings!" onclick="meny.open()"><img src="settings.png"></div>
+		<div class="optionsbarbox tooltip" title="Work in progress!"><img src="upgrades.png"></div>
+	</div>
 
 	<div class="intro" id="fertilizer" onclick="clicked('fertilizer')">
 		<span id="fertilizerspan"></span>
@@ -987,7 +1100,9 @@
 	<div id="alertMessage2">Save unsuccessful!</div>
 	<div id="alertMessage3">Game Loaded!</div>
 
-	<div class="achievement hidden"><img src="trophy.png"><span id="achievementspan"></span></div>
+	<div class="achievement hidden"><img id="achievementimg" src="trophy.png"><span id="achievementspan"></span></div>
+
+</div>
 </div>
 
 <!-- Particles -->
