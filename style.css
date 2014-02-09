@@ -770,7 +770,10 @@ body {
 	background-color: rgba(255,255,255,0.6);
 	border-radius: 15px;
 	text-decoration: none;
+	display: none;
 }
+
+#skipintro { display: none; }
 
 #intro.tiny { 
 		width: 700px;
