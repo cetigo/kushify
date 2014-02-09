@@ -813,7 +813,7 @@ body {
 /* ACHIEVEMENT MESSAGE */
 
 .achievement {
-	z-index:10;
+	z-index:40;
     font-family: "Open Sans Condensed";
 	color: #F3F0D1;
 	text-shadow: 0px 4px 3px rgba(0,0,0,0.4),
@@ -900,7 +900,7 @@ body {
 
 /* ALERT MESSAGE */
 #alertMessage, #alertMessage2, #alertMessage3, #alertMessage4 {
-	z-index:60;
+	z-index:20;
     font-family: "Open Sans Condensed";
 	color: #F3F0D1;
 	background-color: rgba(106, 194, 98, 1);
