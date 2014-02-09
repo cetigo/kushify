@@ -809,7 +809,7 @@
 	}
 
 	$(document).ready(function () {
-		
+
 		$('.tooltip').tooltipster({
 		   animation: 'fall',
 		   theme: 'tooltipster-light',
@@ -820,7 +820,6 @@
 	        coffeefy();
 	        $('#switch').prop('checked', false);
 	    }
-	    $('#introbutton, #skipintro').fadeIn('100');
 
 	    $("#switch").change(function () {
 	        if ($('#switch').prop('checked')) {
@@ -937,7 +936,11 @@
 
 	});
 
-
+	window.onload = function() {
+		$('#loadingspan').fadeOut('100', function() {
+			$('#introbutton, #skipintro').fadeIn('100');
+		});
+    };
 		
 	</script>
 </head>
@@ -1023,6 +1026,7 @@
 
 	<div id="intro">
 		<span id="introtext">Hey there!</span><br><br>
+		<span id="loadingspan">Loading ...</span>
 		<a id="introbutton" href="#" style="display: none;" onclick="introHandler()">></a><br>
 		<a id="skipintro" href="#" onclick="skipIntro()" style="display:none; color:#fff; font-size: 18px;">Skip Intro >></a>
 	</div>
