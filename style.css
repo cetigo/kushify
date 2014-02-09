@@ -19,6 +19,11 @@ body {
     -webkit-box-sizing: border-box;
        -moz-box-sizing: border-box;
             box-sizing: border-box;
+	-webkit-user-select: none;
+  	-khtml-user-select: none;
+  	-moz-user-select: none;
+  	-o-user-select: none;
+  	user-select: none; 
 }
 
 .meny b {
@@ -32,16 +37,21 @@ body {
 	-webkit-box-shadow: 0 1px 2px #777;
 	-moz-box-shadow: 0 2px 1px #777;
 	box-shadow: 0 2px 1px #777;
+	-webkit-user-select: none;
+  	-khtml-user-select: none;
+  	-moz-user-select: none;
+  	-o-user-select: none;
+  	user-select: none; 
 }
 
 .meny a {
 	cursor: pointer;
 	text-decoration: none;
-	-webkit-transition: all 0.2s;
-	-moz-transition: all 0.2s;
-	-ms-transition: all 0.2s;
-	-o-transition: all 0.2s;
-	transition: all 0.2s;
+	-webkit-transition: border-color 0.2s, background 0.1s;
+	-moz-transition: border-color 0.2s, background 0.1s;
+	-ms-transition: border-color 0.2s, background 0.1s;
+	-o-transition: border-color 0.2s, background 0.1s;
+	transition: border-color 0.2s, background 0.1s;
     height: 40px;
     line-height: 40px;
     display: inline-block;
@@ -55,6 +65,11 @@ body {
     -webkit-box-shadow: 0 1px 2px #777;
 	-moz-box-shadow: 0 2px 1px #777;
 	box-shadow: 0 2px 1px #777;
+	-webkit-user-select: none;
+  	-khtml-user-select: none;
+  	-moz-user-select: none;
+  	-o-user-select: none;
+  	user-select: none; 
 }
 
 .meny a.smalllink {
@@ -757,6 +772,11 @@ body {
     -o-transition: all 0.5s ease;
     -webkit-transition: all 0.5s ease;
     transition: all 0.5s ease;
+    -webkit-user-select: none;
+  	-khtml-user-select: none;
+  	-moz-user-select: none;
+  	-o-user-select: none;
+  	user-select: none; 
 }
 
 #intro.side {
@@ -818,11 +838,18 @@ body {
     height:60px;
     top: 62px;
     text-align:center;
+
     -webkit-transition: all 0.6s;
 	-moz-transition: all 0.6s;
 	-ms-transition: all 0.6s;
 	-o-transition: all 0.6s;
 	transition: all 0.6s;
+
+	-webkit-user-select: none;
+  	-khtml-user-select: none;
+  	-moz-user-select: none;
+  	-o-user-select: none;
+  	user-select: none; 
 }
 
 .achievement img {
@@ -892,6 +919,12 @@ body {
     text-align:center;
 
     display:none;
+
+    -webkit-user-select: none;
+  	-khtml-user-select: none;
+  	-moz-user-select: none;
+  	-o-user-select: none;
+  	user-select: none; 
 }
 
 #alertMessage2, #alertMessage4 {
