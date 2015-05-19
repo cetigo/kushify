@@ -22,7 +22,7 @@
 	    });
 	}
 
-	$(['weed.jpg', 'weedbg.jpg', 'weedarrow.jpg', 'coffee.jpg', 'coffeebg.jpg', 'coffeearrow.jpg', 'money.jpg', 'moneybg.jpg', 'moneyarrow.jpg', 'fertilizer.jpg', 'fertilizerbg.jpg', 'fertilizerarrow.jpg']).preload();
+	$(['weed.jpg', 'weedbg.jpg', 'weedarrow.jpg', 'money.jpg', 'moneybg.jpg', 'moneyarrow.jpg', 'fertilizer.jpg', 'fertilizerbg.jpg', 'fertilizerarrow.jpg']).preload();
 
 	 //Savegame
 	var saveCrypt = "";
@@ -65,24 +65,24 @@
 	var acvVisible = false;
 
 	//Achievements
-	var achievements = new Array();
+	var achievements = [];
 
-	achievements[0] = new Array(0, 'Taste of Blood'); //
-	achievements[1] = new Array(0, 'The Circle'); //
-	achievements[2] = new Array(0, 'Click, Click'); //
-	achievements[3] = new Array(0, 'Time to Rise'); //
-	achievements[4] = new Array(0, 'Stunningly 3D'); //
-	achievements[5] = new Array(0, 'Tenacious'); //
-	achievements[6] = new Array(0, 'SFW'); //
-	achievements[7] = new Array(0, 'It Begins'); //
-	achievements[8] = new Array(0, 'Set for Life'); //
-	achievements[9] = new Array(0, 'I feel so Slow'); //
-	achievements[10] = new Array(0, 'The Horror'); //
-	achievements[11] = new Array(0, 'The Dream');
-	achievements[12] = new Array(0, 'Rebel');
-	achievements[13] = new Array(0, 'With Pride');
-	achievements[14] = new Array(0, 'Insomnia');
-	achievements[15] = new Array(0, 'Straight Edge');
+	achievements[0] = [0, 'Taste of Blood']; //
+	achievements[1] = [0, 'The Circle']; //
+	achievements[2] = [0, 'Click, Click']; //
+	achievements[3] = [0, 'Time to Rise']; //
+	achievements[4] = [0, 'Stunningly 3D']; //
+	achievements[5] = [0, 'Tenacious']; //
+	achievements[6] = [0, 'SFW']; //
+	achievements[7] = [0, 'It Begins']; //
+	achievements[8] = [0, 'Set for Life']; //
+	achievements[9] = [0, 'I feel so Slow']; //
+	achievements[10] = [0, 'The Horror']; //
+	achievements[11] = [0, 'The Dream'];
+	achievements[12] = [0, 'Rebel'];
+	achievements[13] = [0, 'With Pride'];
+	achievements[14] = [0, 'Insomnia'];
+	achievements[15] = [0, 'Straight Edge'];
 
 	 //Facility and DataHeap
 	var facilities = new Array(); //dealer, trailer, greenhouse, export1, etc
@@ -295,9 +295,9 @@
 	    if (facility === 'enchantcursor1') {
 	        if (weed > (increasePrice(4, (facilities[4][0] + 1)) - 1) && money > (increasePrice(4, (facilities[4][0] + 1)) - 1) && fertilizer > (increasePrice(4, (facilities[4][0] + 1)) - 1)) { //check weed, fertilizer and money
 	            facilities[4][0]++; //add one
-	            weed = weed - increasePrice(4, facilities[4][0]); //distract weed
-	            fertilizer = fertilizer - increasePrice(4, facilities[4][0]); //distract weed
-	            money = money - increasePrice(4, facilities[4][0]); //distract weed
+	            weed = weed - increasePrice(4, facilities[4][0]); //distract 
+	            fertilizer = fertilizer - increasePrice(4, facilities[4][0]); //distract 
+	            money = money - increasePrice(4, facilities[4][0]); //distract 
 	            updateFacilities();
 	            return;
 	        };
@@ -459,17 +459,14 @@
 		//calculate the new expenses and gains from the facilities, print all shop labels
 	    for (var i = 0; i < facilities.length; i++) {
 	    	if (facilities[i][5] == 1) {
-	    		//alert('Type 1 - ' + facilities[i][5]);
 	    		wes = wes + (facilities[i][0] * facilities[i][3]);
 	    		mps = mps + (facilities[i][0] * facilities[i][4]);
 	    	}
 	    	else if (facilities[i][5] == 2) {
-	    		//alert('Type 2 - ' + facilities[i][5]);
 	    		mes = mes + (facilities[i][0] * facilities[i][3]);
 	    		fps = fps + (facilities[i][0] * facilities[i][4]);
 	    	}
 	    	else if (facilities[i][5] == 3) {
-	    		//alert('Type 3 - ' + facilities[i][5]);
 	    		fes = fes + (facilities[i][0] * facilities[i][3]);
 	    		wps = wps + (facilities[i][0] * facilities[i][4]);
 	    	}
@@ -491,9 +488,7 @@
 	}
 
 	function increasePrice(facility, number) {
-	    //var Price = facilities[facility][1] * (((Math.sqrt(number) / 2) + (Math.pow((number / 100), 4) / 100)) + 0.5);
-	    var Price = facilities[facility][1] * Math.pow(1.09, (number - 1));
-	    return Price;
+	    return facilities[facility][1] * Math.pow(1.09, (number - 1));
 	}
 
 
@@ -585,16 +580,10 @@
 	        money = 5000;
 	        weed = 5000;
 	        fertilizer = 5000;
-	    };
-	    if (cheat == 'cmoune') {
+	    } else if (cheat == 'cmoune') {
 	        money = 100000;
 	        weed = 100000;
 	        fertilizer = 100000;
-	    };
-	    if (cheat == 'fungus') {
-	        money = 10000000;
-	        weed = 10000000;
-	        fertilizer = 10000000;
 	    };
 	}
 
