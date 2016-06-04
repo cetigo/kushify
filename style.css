@@ -154,7 +154,7 @@ body {
 }
 
 #containerwtom {
-	background: url('weedbg.jpg') no-repeat;
+	background: url('images/weedbg.jpg') no-repeat;
 	background-color: #222;
 	top: 115px;
 	left: 50%;
@@ -162,7 +162,7 @@ body {
 }
 
 #containerftow {
-	background: url('fertilizerbg.jpg') no-repeat;
+	background: url('images/fertilizerbg.jpg') no-repeat;
 	background-color: #222;
 	top: 115px;
 	left: 50%;
@@ -170,14 +170,14 @@ body {
 }
 
 #containermtof {
-	background: url('moneybg.jpg') no-repeat;
+	background: url('images/moneybg.jpg') no-repeat;
 	background-color: #222;
 	position: relative;
 	margin: 610px auto 0;
 }
 
 #list {
-	background: url(pattern.png);
+	background: url(images/pattern.png);
 	border-radius: 5px;
 	text-align: left;
 	height: 140px;
@@ -547,9 +547,9 @@ body {
 }
 
 /* RESOURCE BUTTON BACKGROUNDS */
-#weed { background: url(weed.jpg) top center; background-position: -5px -5px; }
-#money { background: url(money.jpg) top center; background-position: -5px -5px;}
-#fertilizer { background: url(fertilizer.jpg) top center; background-position: -5px -5px;}
+#weed { background: url(images/weed.jpg) top center; background-position: -5px -5px; }
+#money { background: url(images/money.jpg) top center; background-position: -5px -5px;}
+#fertilizer { background: url(images/fertilizer.jpg) top center; background-position: -5px -5px;}
 
 /* BASIC ARROW */
 .arrow {
@@ -614,7 +614,7 @@ body {
 	left: 50%;
 	margin-left: -115px;
 	width: 230px;
-	background: url(moneyarrow.jpg) repeat;
+	background: url(images/moneyarrow.jpg) repeat;
 }
 .arrow.mtof:after { content: " $/s"; font-size: 14px; }
 
@@ -626,7 +626,7 @@ body {
 	-moz-transform: rotate(-20deg);
 	transform: rotate(-20deg);
 	width: 160px;
-	background: url(fertilizerarrow.jpg) repeat;
+	background: url(images/fertilizerarrow.jpg) repeat;
 }
 .arrow.ftow:after { content: " u/s"; font-size: 14px; }
 
@@ -638,7 +638,7 @@ body {
 	-moz-transform: rotate(20deg);
 	transform: rotate(20deg);
 	width: 160px;
-	background: url(weedarrow.jpg) repeat;
+	background: url(images/weedarrow.jpg) repeat;
 }
 .arrow.wtom:after { content: " g/s"; font-size: 14px; }
 
@@ -1070,17 +1070,17 @@ body {
 *.intro { display: none; }
 
 #weed.coffeemod {
-    background: url('coffee.jpg');
+    background: url('images/coffee.jpg');
     background-size: 260px 260px;
     background-position: -5px -5px; 
 }
 
 .wtom.coffeemod {
-	background: url('coffeearrow.jpg') repeat;
+	background: url('images/coffeearrow.jpg') repeat;
 }
 
 #containerwtom.coffeemod {
-	background: url('coffeebg.jpg') no-repeat;
+	background: url('images/coffeebg.jpg') no-repeat;
 	background-color: #222;
 }
 
@@ -1091,18 +1091,18 @@ body {
 
 @media only screen and (-moz-min-device-pixel-ratio: 1.5), only screen and (-o-min-device-pixel-ratio: 3/2), only screen and (-webkit-min-device-pixel-ratio: 1.5), only screen and (min-devicepixel-ratio: 1.5), only screen and (min-resolution: 1.5dppx) {
     #weed.coffeemod {
-    	background: url('CoffeeRetina.jpg');
+    	background: url('images/CoffeeRetina.jpg');
     	background-size: 260px 260px;
     	background-position: -5px -5px; 
     }
 
     .arrow.wtom.coffeemod {
-		background: url('coffeearrowRetina.jpg') repeat;
+		background: url('images/coffeearrowRetina.jpg') repeat;
 		background-size: 200px 30px;
 	}
 
 	#containerwtom.coffeemod {
-		background: url('coffeebgRetina.jpg') no-repeat;
+		background: url('images/coffeebgRetina.jpg') no-repeat;
 		background-color: #222;
 		background-size: 390px 150px
 	}
@@ -1112,18 +1112,18 @@ body {
 	}
 
 	#money {
-		background: url('moneyRetina.jpg');
+		background: url('images/moneyRetina.jpg');
 		background-size: 260px 260px;
 		background-position: -5px -5px;
 	}
 
 	.arrow.mtof {
-		background: url('moneyarrowRetina.jpg') repeat;
+		background: url('images/moneyarrowRetina.jpg') repeat;
 		background-size: 200px 30px;
 	}
 
 	#containermtof {
-		background: url('moneybgRetina.jpg');
+		background: url('images/moneybgRetina.jpg');
 		background-size: 390px 150px;
 	}
 }
