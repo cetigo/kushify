@@ -493,37 +493,37 @@ function introHandler(moneyTriggered) {
         $('#skipintro').fadeOut();
         $('#introtext').text('You like money.');
         setTimeout(function () {
-            $('#introtext').text('Who the hell doesnt?')
-        }, 3000);
+            $('#introtext').text("Who the hell doesnt?")
+        }, 1.5 * 3000);
         setTimeout(function () {
             $('#introtext').text('Alright.')
-        }, 5000);
+        }, 1.5 * 5000);
         setTimeout(function () {
             $('#intro').addClass('side')
-        }, 6000);
+        }, 1.5 * 6000);
         setTimeout(function () {
             $('#weed').fadeIn().removeClass('intro')
-        }, 6200);
+        }, 1.5 * 6200);
         setTimeout(function () {
             $('#introtext').text('Now this is ' + weedOrCoffee + '.')
-        }, 7000);
+        }, 1.5 * 7000);
         setTimeout(function () {
             $('#introtext').text('Maybe you like ' + weedOrCoffee + '.')
-        }, 9000);
+        }, 1.5 * 9000);
         setTimeout(function () {
             $('#introtext').text('But what counts is, you can sell it.')
-        }, 11000);
+        }, 1.5 * 11000);
         setTimeout(function () {
             $('#introtext').text('However, thats really annoying and dangerous.')
-        }, 13000);
+        }, 1.5 * 13000);
         setTimeout(function () {
             $('#introtext').text('So hire some idiot to do it for you!')
-        }, 15000);
+        }, 1.5 * 15000);
         setTimeout(function () {
             $('#containerwtom').fadeIn().removeClass('intro');
             $('.dealer').fadeIn().removeClass('intro');
             $('#title').addClass('sizedown')
-        }, 15000);
+        }, 1.5 * 15000);
         return;
     }
 
