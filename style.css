@@ -193,13 +193,13 @@ body {
 }
 
 #containerwtom.expanded #list, #containerftow.expanded #list, #containermtof.expanded #list {
- 	margin: 0 0 30px 0;
- 	height: 330px;
+	margin: 30px 0 0 0;
+	height: 380px;
  }
 
 #containerwtom.expanded, #containerftow.expanded, #containermtof.expanded {
-	margin-top: 400px;
-	background-position: 0 340px;
+	background-position: 0 -120px;
+	top: 85px;
 }
 
 #contentsblur.activated {
