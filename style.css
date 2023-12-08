@@ -1070,7 +1070,7 @@ body {
 	padding: 8px 10px;
 }
 
-*.intro { display: none; }
+*.intro, *.intro-ads { display: none; }
 
 #weed.coffeemod {
     background: url('images/coffee.jpg');
