@@ -209,7 +209,7 @@ body {
     background-position: 0 -120px;
 }
 
-#containerwtom.expanded, #containerftow.expanded, #containermtof.expanded {
+#containerwtom.expanded, #containerftow.expanded {
 	background-position: 0 -120px;
 	top: 85px;
 }
