@@ -22,7 +22,7 @@
 <body>
 
 <div class="meny">
-	<p><b class="tooltip" title="JK (c)">KUSHIFY &#945; 2.7.5</b><br><br>
+	<p><b class="tooltip" title="cetigo (c)">KUSHIFY &#945; 2.7.6</b><br><br>
 
 	   <a class="intro" onclick="saveGame(true)">Export Save</a> 
 	   <a class="intro tooltip" title="Careful! Load up the save you entered." onclick="loadGame()">Import Save</a> 
@@ -80,7 +80,8 @@
 		<div class="achievementbox tooltip" title="Rebel - Fight the system!" id="acv13"><img src="icons/13.png"></div>
 		<div class="achievementbox tooltip" title="With Pride - Brag with your save!" id="acv14"><img src="icons/14.png"></div>
 		<div class="achievementbox tooltip" title="Insomnia - Play a lot, way too late" id="acv15"><img src="icons/15.png"></div>
-		<div class="achievementbox tooltip" title="Straight Edge - Deny the enticement of drugs until you reach 2 Million Dollars" id="acv16"><img src="icons/16.png"></div>
+		<div class="achievementbox tooltip" title="Straight Edge - Deny the enticement of drugs until you reach 2 Million Dollars" id="acv16"><img src="icons/16.png"></div><br>
+		<a href="#" onclick="showAchievements()" style="font-size: 20px;color: #787878;">Close</a>
 	</div>
 
 	<div id="blurunderlay"></div>
@@ -488,7 +489,7 @@
     height: 200,
 
     // Use mouse movement to automatically open/close
-    mouse: false,
+    mouse: true,
 
     // Use touch swipe events to open/close
     touch: true
