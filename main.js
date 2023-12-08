@@ -491,13 +491,13 @@ function introHandler(moneyTriggered) {
     if (moneyTriggered == true) {
         introstep++;
         $('#skipintro').fadeOut();
-        $('#introtext').text('You like money.');
-	var timeScale = 2.2;
+        $('#introtext').text('You like money');
+	var timeScale = 1.9;
         setTimeout(function () {
-            $('#introtext').text("Who the hell doesnt?")
+            $('#introtext').text("Who doesn't?")
         }, timeScale * 3000);
         setTimeout(function () {
-            $('#introtext').text('Alright.')
+            $('#introtext').text('Alright...')
         }, timeScale * 5000);
         setTimeout(function () {
             $('#intro').addClass('side')
@@ -506,19 +506,19 @@ function introHandler(moneyTriggered) {
             $('#weed').fadeIn().removeClass('intro')
         }, timeScale * 6200);
         setTimeout(function () {
-            $('#introtext').text('Now this is ' + weedOrCoffee + '.')
+            $('#introtext').text('...Now this is ' + weedOrCoffee + '.')
         }, timeScale * 7000);
         setTimeout(function () {
             $('#introtext').text('Maybe you like ' + weedOrCoffee + '.')
         }, timeScale * 9000);
         setTimeout(function () {
-            $('#introtext').text('But what counts is, you can sell it.')
+            $('#introtext').text('What counts, you can sell it.')
         }, timeScale * 11000);
         setTimeout(function () {
-            $('#introtext').text('However, thats really annoying and dangerous.')
+            $('#introtext').text('Of course not *you* yourself')
         }, timeScale * 13000);
         setTimeout(function () {
-            $('#introtext').text('So hire some idiot to do it for you!')
+            $('#introtext').text('Hire a dealer to do it for you!')
         }, timeScale * 15000);
         setTimeout(function () {
             $('#containerwtom').fadeIn().removeClass('intro');
@@ -534,7 +534,8 @@ function introHandler(moneyTriggered) {
         $('#introtext').text('Good job. Now rise!');
         $('.intro').fadeIn('400').removeClass('intro');
         setTimeout(function () {
-            $('#intro').fadeOut()
+            $('#intro').fadeOut();
+	    $('.intro-ads').fadeIn('400').removeClass('intro-ads');
         }, 3000);
     }
 }
