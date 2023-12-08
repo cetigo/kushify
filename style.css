@@ -197,6 +197,18 @@ body {
 	height: 380px;
  }
 
+/* fertilizer to weed and weed to money stores */
+#containerwtom.expanded, #containerftow.expanded {
+	background-position: 0 -120px;
+	top: 85px;
+}
+
+/* money to fertilizer stores */
+#containermtof.expanded {
+    margin-top: 580px;
+    background-position: 0 -120px;
+}
+
 #containerwtom.expanded, #containerftow.expanded, #containermtof.expanded {
 	background-position: 0 -120px;
 	top: 85px;
