@@ -192,21 +192,12 @@ body {
 	transition: all 0.4s;
 }
 
-#containerwtom.expanded #list, #containerftow.expanded #list {
-	margin: 30px 0 0 0;
-	height: 380px;
-}
- #containermtof.expanded #list {
+#containerwtom.expanded #list, #containerftow.expanded #list, #containermtof.expanded #list {
  	margin: 0 0 30px 0;
  	height: 330px;
  }
 
-#containerwtom.expanded, #containerftow.expanded {
-	background-position: 0 -120px;
-	top: 85px;
-}
-
-#containermtof.expanded {
+#containerwtom.expanded, #containerftow.expanded, #containermtof.expanded {
 	margin-top: 400px;
 	background-position: 0 340px;
 }
@@ -428,8 +419,8 @@ body {
     overflow: hidden;
     position: absolute;
     left: 50%;
-    margin-left: -84px;
-    width:168px;
+    margin-left: -57px;
+    width: 115px;
     height:60px;
     top: 70px;
     text-align:center;
