@@ -543,6 +543,7 @@ function introHandler(moneyTriggered) {
 function skipIntro() {
     $('#intro').remove().fadeOut();
     $('.intro').fadeIn().removeClass('intro');
+    $('.intro-ads').fadeIn().removeClass('intro-ads');
     $('#title').addClass('sizedown');
     introstep = 4;
 }
