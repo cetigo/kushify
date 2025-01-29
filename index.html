@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<title>Kushify - A kushy clicker game</title>
+	<meta name="keywords" content="Kushify, Kush, Coffeefy, Coffee, Clicker, Game, Incremental, Idle, Cookie"/>
+	<meta name="language" content="en"/>
+	<meta name="robots" content="index,follow"/>
+	<meta name="description" content="Kushify is a clicker game that features you in the epic struggle to create a power-seizing drug empire, managing three resources, Money, Fertilizer and Weed. Or Coffee, just how you like it!">
+
+	<link href='https://fonts.googleapis.com/css?family=Chau+Philomene+One:400,400italic|Ceviche+One|Open+Sans+Condensed:300,300italic,700' rel='stylesheet' type='text/css'>
+	
+	<link rel="stylesheet" type="text/css" href="style.css">
+	<link rel="stylesheet" type="text/css" href="css/tooltipster.css" />
+
+	<script type="text/javascript" src="https://code.jquery.com/jquery-2.0.3.min.js"></script>
+	<script type="text/javascript" src="js/jquery.tooltipster.min.js"></script>
+	<script type="text/javascript" src="js/crypt.js"></script>
+
+	<script type="text/javascript" src="main.js"></script>
+</head>
+<body>
+
+<div class="meny">
+	<p><b class="tooltip" title="cetigo (c)">KUSHIFY &#945; 2.7.6</b><br><br>
+
+	   <a class="intro" onclick="saveGame(true)">Export Save</a> 
+	   <a class="intro tooltip" title="Careful! Load up the save you entered." onclick="loadGame()">Import Save</a> 
+	   <a class="intro" onclick="saveGame()">Save</a> 
+	   <a class="intro tooltip" title="Refresh the data from the last save" onclick="loadGame(true)">Load</a>
+
+	   <span class="kushify-switch tooltip" title="Hit switch if at work or in other imminent danger">
+	   	<input id="switch" type="checkbox" class="input-switch" checked="checked"/>
+	   	<label for="switch"></label><span class="switch-bg"></span>
+	   	<span data-on="Kush" data-off="Coffee" class="switch-labels"></span>
+	   </span> 
+
+	   <span class="kushify-switch tooltip" title="Toggle Particles">
+	   	<input id="switch2" type="checkbox" class="input-switch" checked="checked"/>
+	   	<label for="switch2"></label><span class="switch-bg"></span>
+	   	<span data-on="Fancy" data-off="Fast" class="switch-labels"></span>
+	   </span>
+
+	   <span class="kushify-switch tooltip" title="Toggle Bounce Animations">
+	   	<input id="switch3" type="checkbox" class="input-switch" checked="checked"/>
+	   	<label for="switch3"></label><span class="switch-bg"></span>
+	   	<span data-on="Bouncy" data-off="Static" class="switch-labels"></span>
+	   </span>
+
+	   <span class="kushify-switch tooltip" title="Expand after 1 second">
+	   	<input id="switch4" type="checkbox" class="input-switch" checked="checked"/>
+	   	<label for="switch4"></label><span class="switch-bg"></span>
+	   	<span data-on="Unfold" data-off="Don't" class="switch-labels"></span>
+	   </span>
+
+	   <a onclick="cheatNow()" class="tooltip" title="You don't really want to do this.">Enter Cheat</a> 
+	   <a class="intro tooltip dev" onclick="clearCookie()" title="Delete the current Savegame. Refresh the page to start from scratch!">Reset Save</a>
+	   
+	   <br>
+	   <textarea spellcheck="false" name="Text1" onclick="this.focus();this.select()" cols="55" rows="2" class="intro" id="saveForm"></textarea>
+	</p>
+</div>
+
+<div class="contents">
+
+	<div id="bluroverlay">
+		<h1>Achievements</h1>
+		<div class="achievementbox tooltip" title="First Blood - Buy your first facility" id="acv1"><img src="icons/1.png"></div>
+		<div class="achievementbox tooltip" title="The Circle - Have a positive income of every resource" id="acv2"><img src="icons/2.png"></div>
+		<div class="achievementbox tooltip" title="Click, Click - Click 500 times" id="acv3"><img src="icons/3.png"></div>
+		<div class="achievementbox tooltip" title="Time to Rise - Advance to the second tier of facilities" id="acv4"><img src="icons/4.png"></div><br>
+		<div class="achievementbox tooltip" title="Stunningly 3D - Discover the ingame menu" id="acv5"><img src="icons/5.png"></div>
+		<div class="achievementbox tooltip" title="Tenacious - Return to Kushify" id="acv6"><img src="icons/6.png"></div>
+		<div class="achievementbox tooltip" title="SFW - Turn your game into a worksafe game" id="acv7"><img src="icons/7.png"></div>
+		<div class="achievementbox tooltip" title="It Begins - Click 1500 times" id="acv8"><img src="icons/8.png"></div><br>
+		<div class="achievementbox tooltip" title="Set for Life - Reach 100$/s" id="acv9"><img src="icons/9.png"></div>
+		<div class="achievementbox tooltip" title="I feel so Slow - Click 150 times on the fertilizer" id="acv10"><img src="icons/10.png"></div>
+		<div class="achievementbox tooltip" title="The Horror - Reach 0 weed or coffee" id="acv11"><img src="icons/11.png"></div>
+		<div class="achievementbox tooltip" title="The Dream - Reach 1 Million Dollars" id="acv12"><img src="icons/12.png"></div><br>
+		<div class="achievementbox tooltip" title="Rebel - Fight the system!" id="acv13"><img src="icons/13.png"></div>
+		<div class="achievementbox tooltip" title="With Pride - Brag with your save!" id="acv14"><img src="icons/14.png"></div>
+		<div class="achievementbox tooltip" title="Insomnia - Play a lot, way too late" id="acv15"><img src="icons/15.png"></div>
+		<div class="achievementbox tooltip" title="Straight Edge - Deny the enticement of drugs until you reach 2 Million Dollars" id="acv16"><img src="icons/16.png"></div><br>
+		<a href="#" onclick="showAchievements()" style="font-size: 20px;color: #787878;">Close</a>
+	</div>
+
+	<div id="blurunderlay"></div>
+
+	<div id="contentsblur">
+
+	<div id="title">KUSHIFY</div>
+
+	<div id="intro">
+		<span id="introtext">Hey there!</span><br><br>
+		<span id="loadingspan">Loading ...</span>
+		<a id="introbutton" href="#" style="display: none;" onclick="introHandler()">></a><br>
+		<a id="skipintro" href="#" onclick="skipIntro()" style="display:none; color:#fff; font-size: 18px;">Skip Intro >></a>
+	</div>
+
+	<div id="optionsbar" class="intro">
+		<div class="optionsbarbox tooltip" title="Achievements!" onclick="showAchievements()"><img src="images/trophy.png"></div>
+		<div class="optionsbarbox tooltip" title="Settings!" onclick="meny.open()"><img src="images/settings.png"></div>
+		<div class="optionsbarbox tooltip" title="Work in progress!"><img src="images/upgrades.png"></div>
+	</div>
+
+	<div class="intro-ads" id="adcontainer">
+		<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+		<!-- K: Central Mobile Banner -->
+		<ins class="adsbygoogle"
+		style="display:inline-block;width:320px;height:100px"
+		data-ad-client="ca-pub-6239448395871346"
+		data-ad-slot="1612814919"></ins>
+		<script>
+			(adsbygoogle = window.adsbygoogle || []).push({});
+		</script>
+	</div>
+
+	<div class="intro" id="fertilizer" onclick="clicked('fertilizer')">
+		<span id="fertilizerspan"></span>
+		<div class="intro fps" onclick="clicked('fertilizer')">0</div>
+	</div>
+	
+	
+	<div class="intro" id="weed" onclick="clicked('weed')">
+		<span id="weedspan"></span>
+		<div class="intro wps" onclick="clicked('weed')">0</div>
+	</div>
+	
+
+	<div class="intro" id="money" onclick="clicked('money')">
+		<span id="moneyspan"></span>
+		<div class="intro mps" onclick="clicked('money')">0</div>
+	</div>
+
+
+	<canvas id="myCanvas" width="500" height="500" style="position: absolute;z-index: -1;top: 0;"></canvas>
+
+	<div class="arrow ftow tooltip intro" title="The amount of fertilizer spent on growing plants.">0</div>
+	<div class="arrow wtom tooltip intro" title="The amount of plants consumed by your trades.">0</div>
+	<div class="arrow mtof tooltip intro" title="The amount of money spent on fertilizer.">0</div>
+		
+
+	<div id="containerftow" class="intro">
+		<div id="list">
+			<span class="intro trailer" onclick="buyFacilityM(1)"></span>
+			<span class="intro appartment" onclick="buyFacilityM(2)"></span>
+			<span class="intro greenhouse" onclick="buyFacilityM(8)"></span>
+			<span class="intro drill" onclick="buyFacilityM(15)"></span>
+			<!--<span class="intro synthetic1" onclick="buyFacilityM(16)"></span> DISABLED -->
+			<span class="intro underwater" onclick="buyFacilityM(17)"></span>
+			<!--<span class="intro island" onclick="buyFacilityM(18)"></span> DISABLED -->
+			<span class="intro rainforest" onclick="buyFacilityM(19)"></span>
+			<span class="intro orbital" onclick="buyFacilityM(20)"></span>
+			<span class="intro lunar" onclick="buyFacilityM(21)"></span>
+			<span class="intro solar" onclick="buyFacilityM(22)"></span>
+			
+		</div>
+	</div>
+
+	<div id="containerwtom" class="intro">
+		<div id="list">
+			<span class="intro dealer" onclick="buyFacilityM(0)"></span>
+			<span class="intro export1" onclick="buyFacilityM(3)"></span>
+			<span class="intro export2" onclick="buyFacilityM(7)"></span>
+			<span class="intro onlineshop" onclick="buyFacilityM(9)"></span>
+			<span class="intro franchise" onclick="buyFacilityM(10)"></span>
+			<span class="intro marketing" onclick="buyFacilityM(11)"></span>
+			<span class="intro vendingmachines" onclick="buyFacilityM(12)"></span>
+			<span class="intro legalization1" onclick="buyFacilityM(13)"></span>
+			<span class="intro conduit" onclick="buyFacilityM(14)"></span>
+		</div>
+	</div>
+
+	<div id="containermtof" class="intro">
+		<div id="list">
+			<span class="intro localshop" onclick="buyFacilityM(23)"></span>
+			<span class="intro fakefarm" onclick="buyFacilityM(5)"></span>
+			<span class="intro takeoverfactory" onclick="buyFacilityM(24)"></span>
+			<span class="intro fakefarm2" onclick="buyFacilityM(6)"></span>
+			<span class="intro tradebonds1" onclick="buyFacilityM(25)"></span>
+			<span class="intro oceanfilter" onclick="buyFacilityM(26)"></span>
+			<span class="intro alphacondenser" onclick="buyFacilityM(27)"></span>
+			<span class="intro enchantcursor1" onclick="buyStuff('enchantcursor1')"></span>
+		</div>
+	</div>
+
+	<div id="alertMessage">Game Saved!</div>
+	<div id="alertMessage2">Save unsuccessful!</div>
+	<div id="alertMessage3">Game Loaded!</div>
+
+	<div class="achievement hidden"><img id="achievementimg" src="images/trophy.png"><span id="achievementspan"></span></div>
+
+</div>
+</div>
+
+<!-- Particles -->
+<script type="text/javascript">
+	window.requestAnimFrame = (function () {
+		return  window.requestAnimationFrame ||
+			window.webkitRequestAnimationFrame ||
+			window.mozRequestAnimationFrame ||
+			window.oRequestAnimationFrame ||
+			window.msRequestAnimationFrame ||
+			function (callback) {
+				window.setTimeout(callback, 1000 / 60);
+			};
+	})();
+
+	Math.randMinMax = function(min, max, round) {
+		var val = min + (Math.random() * (max - min));
+		
+		if( round ) val = Math.round( val );
+		
+		return val;
+	};
+	Math.TO_RAD = Math.PI/180;
+	Math.getAngle = function( x1, y1, x2, y2 ) {
+		
+		var	dx = x1 - x2,
+			dy = y1 - y2;
+		
+		return Math.atan2(dy,dx);
+	};
+	Math.getDistance = function( x1, y1, x2, y2 ) {
+		
+		var 	xs = x2 - x1,
+			ys = y2 - y1;		
+		
+		xs *= xs;
+		ys *= ys;
+		 
+		return Math.sqrt( xs + ys );
+	};
+
+	var 	FX = {};
+
+	$(function() {
+		
+		var	canvas = document.getElementById('myCanvas'),
+			ctx = canvas.getContext('2d'),
+			lastUpdate = new Date(),
+			mouseUpdate = new Date(),
+			lastMouse = [],
+			width, height;
+
+		FX.particles = [];
+
+		setFullscreen();
+		document.getElementById('money').addEventListener('mousedown', buttonEffect);
+		document.getElementById('weed').addEventListener('mousedown', buttonEffect2);
+		document.getElementById('fertilizer').addEventListener('mousedown', buttonEffect3);
+
+		function buttonEffect() {
+
+			var button = document.getElementById('money'),
+				height = button.offsetHeight,
+				left = button.offsetLeft,
+				top = button.offsetTop,
+				width = button.offsetWidth,
+				x, y, degree;
+
+			for(var i=0;i<40;i=i+1) {
+
+				if( Math.random() < 0.5 ) {
+
+					y = Math.randMinMax(top, top+height);
+
+					if( Math.random() < 0.5 ) {
+						x = left;
+						degree = Math.randMinMax(-45,45);
+					} else {
+						x = left + width;
+						degree = Math.randMinMax(135,225);
+					}
+          
+				} else {
+
+					x = Math.randMinMax(left, left+width);
+
+					if( Math.random() < 0.5 ) {
+						y = top;
+						degree = Math.randMinMax(45,135);
+					} else {
+						y = top + height;
+						degree = Math.randMinMax(-135, -45);
+					}
+					
+				}
+				createParticle({
+					x: x,
+					y: y,
+					degree: degree,
+					vs: Math.randMinMax(-9,-5)
+				});
+			}
+		}
+
+		function buttonEffect2() {
+
+			var button = document.getElementById('weed'),
+				height = button.offsetHeight,
+				left = button.offsetLeft,
+				top = button.offsetTop,
+				width = button.offsetWidth,
+				x, y, degree;
+
+			for(var i=0;i<40;i=i+1) {
+
+				if( Math.random() < 0.5 ) {
+
+					y = Math.randMinMax(top, top+height);
+
+					if( Math.random() < 0.5 ) {
+						x = left;
+						degree = Math.randMinMax(-45,45);
+					} else {
+						x = left + width;
+						degree = Math.randMinMax(135,225);
+					}
+          
+				} else {
+
+					x = Math.randMinMax(left, left+width);
+
+					if( Math.random() < 0.5 ) {
+						y = top;
+						degree = Math.randMinMax(45,135);
+					} else {
+						y = top + height;
+						degree = Math.randMinMax(-135, -45);
+					}
+					
+				}
+				if (coffeeMod === true) {
+					createParticle({
+						x: x,
+						y: y,
+						degree: degree,
+						color: 'hsla('+ Math.randMinMax(20, 40) +', ' + Math.randMinMax(20, 50) + '%, ' + Math.randMinMax(20, 70) + '%, '+(Math.random().toFixed(2))+')',
+						vs: Math.randMinMax(-9,-5)
+					});
+				}
+				else {
+					createParticle({
+						x: x,
+						y: y,
+						degree: degree,
+						color: 'hsla('+ Math.randMinMax(100, 155) +', 100%, 50%, '+(Math.random().toFixed(2))+')',
+						vs: Math.randMinMax(-9,-5)
+					});
+				}
+
+				
+			}
+		}
+
+		function buttonEffect3() {
+
+			var button = document.getElementById('fertilizer'),
+				height = button.offsetHeight,
+				left = button.offsetLeft,
+				top = button.offsetTop,
+				width = button.offsetWidth,
+				x, y, degree;
+
+			for(var i=0;i<40;i=i+1) {
+
+				if( Math.random() < 0.5 ) {
+
+					y = Math.randMinMax(top, top+height);
+
+					if( Math.random() < 0.5 ) {
+						x = left;
+						degree = Math.randMinMax(-45,45);
+					} else {
+						x = left + width;
+						degree = Math.randMinMax(135,225);
+					}
+          
+				} else {
+
+					x = Math.randMinMax(left, left+width);
+
+					if( Math.random() < 0.5 ) {
+						y = top;
+						degree = Math.randMinMax(45,135);
+					} else {
+						y = top + height;
+						degree = Math.randMinMax(-135, -45);
+					}
+					
+				}
+				createParticle({
+					x: x,
+					y: y,
+					degree: degree,
+					color: 'hsla('+ Math.randMinMax(170, 210) +', 100%, 50%, '+(Math.random().toFixed(2))+')',
+					vs: Math.randMinMax(-9,-5)
+				});
+			}
+		}
+
+		window.setTimeout(buttonEffect2, 100); 
+
+		loop();
+
+		window.addEventListener('resize', setFullscreen );
+
+		function createParticle( args ) {
+			if (particlesDeactivated === true) {return}
+
+			var options = {
+				x: width/2,
+				y: height/2,
+				color: 'hsla('+ Math.randMinMax(60, 110) +', 100%, 50%, '+(Math.random().toFixed(2))+')', //the first two numbers are the color spectrum, from yellow to 
+				degree: Math.randMinMax(0, 360),
+				speed: Math.randMinMax(120, 170),
+				vd: Math.randMinMax(-90,90),
+				vs: Math.randMinMax(-8,-5)
+			};
+
+			for (key in args) {
+			  options[key] = args[key];
+			}
+
+			FX.particles.push( options );
+		}
+
+		function loop() {
+
+			var 	thisUpdate = new Date(),
+				delta = (lastUpdate - thisUpdate) / 1000,
+				amount = FX.particles.length,
+				size = 3,
+				i = 0,
+				p;
+
+			ctx.fillStyle = 'rgba(25,25,25,0.45)';
+			ctx.fillRect(0,0,width,height);
+
+			ctx.globalCompositeStyle = 'lighter';
+
+			for(;i<amount;i=i+1) {
+
+				p = FX.particles[ i ];
+
+				p.degree += (p.vd * delta);
+				p.speed += (p.vs);// * delta);
+				if( p.speed < 0 ) continue;
+
+				p.x += Math.cos(p.degree * Math.TO_RAD) * (p.speed * delta);
+				p.y += Math.sin(p.degree * Math.TO_RAD) * (p.speed * delta);
+
+				ctx.save();
+			
+				ctx.translate( p.x, p.y );
+				ctx.rotate( p.degree * Math.TO_RAD );
+
+				ctx.fillStyle = p.color;
+				ctx.fillRect( -size, -size, size*2, size*2 );
+
+				ctx.restore();
+			}
+
+			lastUpdate = thisUpdate;
+
+			requestAnimFrame( loop );
+		}
+
+		function setFullscreen() {
+			width = canvas.width = window.outerWidth;
+			height = canvas.height = window.outerHeight;
+		};
+	});
+</script>
+<script type="text/javascript" src="js/meny.js"></script>
+<script type="text/javascript">
+	var meny = Meny.create({
+    // The element that will be animated in from off screen
+    menuElement: document.querySelector( '.meny' ),
+
+    // The contents that gets pushed aside while Meny is active
+    contentsElement: document.querySelector( '.contents' ),
+
+    // The alignment of the menu (top/right/bottom/left)
+    position: 'top',
+
+    // The width of the menu (when using left/right position)
+    height: 200,
+
+    // Use mouse movement to automatically open/close
+    mouse: true,
+
+    // Use touch swipe events to open/close
+    touch: true
+});
+</script>
+
+<!-- Google Analytics -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-47758710-1', 'cetigo.github.io');
+  ga('send', 'pageview');
+
+</script>
+</body>
+</html>
